@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './_services';
+import { User } from './_models';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
-  title = 'diploma-work';
+export class AppComponent implements OnInit {
+  public currentUser: User;
+
+  constructor(
+    private readonly authenticationService: AuthenticationService
+  ) { }
+
+  ngOnInit() {
+    this.authenticationService.currentUser.subscribe((_curretUser: User) => this.currentUser = _curretUser);
+  }
 }

@@ -1,0 +1,45 @@
+@import "../constants"
+
+// header
+.navbar
+    background-color: #ffffff
+button:focus
+    outline: unset
+.user-icon
+  height: 55px
+  margin: 5px
+  cursor: pointer
+  font-size: 36px
+.nav-item
+    margin: auto 0.2rem
+.account-img
+    margin-right: 1rem
+.user-info
+  font-size: 12px
+.navbar-brand
+    span
+        font-weight: bold
+        font-size: 15px
+        margin-left: 15px
+.navbar-menu
+    width: 100%
+.dropdown-menu
+    li
+        padding: .5rem 1rem
+        cursor: pointer
+// main part
+main
+    min-height: calc(100vh - 66px)
+    margin: 66px 0 0 300px
+    background-color: $color-background
+    @media (max-width: 767px)
+        margin-left: 66px
+.icon-bars
+    fill: $color-text
+.div-icon-bars
+    width: 15px
+    overflow: hidden
+    margin-right: 5px
+@media (max-width: 575px)
+    #main
+        margin-left: 0

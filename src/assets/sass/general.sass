@@ -1,0 +1,24 @@
+@import "../../app/constants"
+
+html,
+body 
+    height: 100%
+*:focus
+    outline: unset
+span,
+li
+    color: $color-text
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show>.btn-primary.dropdown-toggle:focus,
+.btn-primary.disabled,
+.btn-primary:disabled
+    background-color: $primary-color
+    border-color: $primary-color
+    box-shadow: unset
+.btn:not(:disabled):not(.disabled).active:focus,
+.btn:not(:disabled):not(.disabled):active:focus,
+.show>.btn.dropdown-toggle:focus
+    box-shadow: unset

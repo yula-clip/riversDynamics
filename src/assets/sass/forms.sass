@@ -1,0 +1,70 @@
+@import "../../app/constants"
+
+.error-message
+    color: $error-color
+.ui-colorpicker-preview
+    height: 2em
+.radiobutton-container
+    display: block
+    position: relative
+    padding-left: 20px
+    margin-bottom: 8px
+    cursor: pointer
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    input
+        position: absolute
+        opacity: 0
+        cursor: pointer
+.checkmark
+    position: absolute
+    top: 4px
+    left: 0
+    height: 15px
+    width: 15px
+    background-color: $color-background
+    border-radius: 50%
+.radiobutton-container:hover input ~ .checkmark
+    background-color: $input-border-color
+.radiobutton-container input:checked ~ .checkmark
+    background-color: $primary-color
+.checkmark:after
+    content: ""
+    position: absolute
+    display: none
+.radiobutton-container input:checked ~ .checkmark:after
+    display: block
+.radiobutton-container .checkmark:after
+    top: 3.9px
+    left: 4.2px
+    width: 7px
+    height: 7px
+    border-radius: 50%
+    background: white
+.container-fluid
+    .is-invalid,
+    .is-invalid.ui-inputtext:enabled:focus:not(.ui-state-error),
+    .is-invalid.ui-inputtext:enabled:hover:not(.ui-state-error)
+        padding-right: .75rem
+        border-color: $error-color
+        background-image: none
+    .is-invalid ~ label
+            color: $error-color
+.form-control:focus
+    outline: none
+    box-shadow: none
+    border-color: $input-border-color
+.form-control.is-invalid:focus,
+.was-validated .form-control:invalid:focus
+    box-shadow: none
+.require:after
+    content: "*"
+    color: $error-color
+    font-size: 16px
+    padding: 2px
+.edit-page
+    max-width: 600px
+    margin-left: auto
+    margin-right: auto

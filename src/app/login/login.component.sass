@@ -1,0 +1,49 @@
+@import "../constants.sass"
+
+.login-page
+    height: 100vh
+    display: flex
+    flex-wrap: wrap
+    >div
+        margin: auto
+    img
+        max-width: 170px
+        @media (max-width: 767px)
+            width: 80px
+    .form-control:focus
+        box-shadow: none
+    h1
+        color: $primary-color
+        @media (max-width: 767px)
+            font-size: 2rem
+    .btn
+        width: 100% 
+    .input-group > .form-control:not(:last-child)
+        border-top-right-radius: 0.25rem
+        border-bottom-right-radius: 0.25rem
+    .ui-float-label
+        >label
+            left: 3.25em
+            top: 1.2em    
+        >input:focus ~ label,
+        >input.ui-state-filled ~ label,
+        >.ui-inputwrapper-focus ~ label,
+        >.ui-inputwrapper-filled ~ label
+            top: -.75em
+            font-size: inherit
+            left: 0
+        >input:-webkit-autofill ~ label
+            top: -.75em
+            font-size: inherit
+            left: inherit
+    .ui-inputtext,
+    .ui-inputtext:enabled:focus:not(.ui-state-error),
+    .ui-inputtext:enabled:hover:not(.ui-state-error)
+        border-color: $input-border-color
+    .is-invalid,
+    .is-invalid.ui-inputtext:enabled:focus:not(.ui-state-error),
+    .is-invalid.ui-inputtext:enabled:hover:not(.ui-state-error),
+        border-color: $error-color
+        background-image: none
+    .is-invalid ~ label
+            color: $error-color

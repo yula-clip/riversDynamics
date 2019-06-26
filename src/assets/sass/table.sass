@@ -1,0 +1,106 @@
+@import "../../app/constants"
+$border-property: solid 1px  $input-border-color
+
+.table-btn
+    margin-left: 10px
+    width: 32px
+    background-color: #ffffff
+    border-color: $input-border-color
+.table-edit-btn
+    border-color: $input-border-color
+.table-btn:hover,
+.table-edit-btn:hover
+    background-color: $primary-color
+    border-color: $primary-color
+.ui-table
+    table
+        table-layout: auto
+        .details .form-group .row:not(.text-right)
+                    font-size: 12px
+    .ui-table-tbody > tr
+        border: $border-property
+    #th-table
+        border: none
+        background-color: transparent
+        font-size: 13px
+    #tr-table
+        background-color: #ffffff
+        h6
+            margin-bottom: 0
+        .close
+            padding-bottom: 22px
+            span
+                color: #ffffff
+body
+    .ui-inputtext
+        padding-top: 4.5px
+        padding-bottom: 4.5px
+    .ui-table .ui-table-tbody > tr > td
+        border-color: $input-border-color
+    .ui-paginator .ui-paginator-pages a.ui-paginator-page.ui-state-active,
+    .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item.ui-state-highlight,
+    .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item-group.ui-state-highlight
+        background-color: $primary-color
+        border-color: $primary-color
+    .ui-dropdown-panel .ui-dropdown-items  .ui-dropdown-item.ui-state-highlight span
+        color: #ffffff
+    .ui-paginator
+        border: none
+        background-color: #ffffff
+        padding-top: 20px
+        .ui-paginator-first span,
+        .ui-paginator-prev span,
+        .ui-paginator-next span,
+        .ui-paginator-last span,
+        .ui-paginator-pages .ui-paginator-page,
+        .ui-dropdown .ui-dropdown-trigger,
+        .ui-dropdown .ui-dropdown-label,
+        .ui-dropdown .ui-dropdown-trigger .ui-dropdown-trigger-icon,
+        .ui-dropdown:hover .ui-dropdown-label,
+        .ui-dropdown:not(.ui-state-disabled):hover,
+        .ui-dropdown:hover .ui-dropdown-trigger
+            color: $primary-color
+        .ui-state-disabled span,
+        .ui-paginator-first.ui-state-disabled span,
+        .ui-paginator-prev.ui-state-disabled span,
+        .ui-paginator-next.ui-state-disabled span,
+        .ui-paginator-last.ui-state-disabled span
+            color: $input-border-color
+        .ui-paginator-pages .ui-paginator-page:not(.ui-state-active):hover,
+        .ui-paginator-first:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-prev:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-next:not(.ui-state-disabled):not(.ui-state-active):hover,
+        .ui-paginator-last:not(.ui-state-disabled):not(.ui-state-active):hover
+            color: $primary-color
+            background-color: $light-gray-color
+        .ui-dropdown .ui-dropdown-label
+            border: $border-property
+            border-radius: calc(.25rem - 1px)
+        .ui-dropdown .ui-dropdown-trigger
+            top: 1px
+            right: 1px
+            height: 30px
+        .ui-dropdown-panel
+            border-color: $input-border-color
+        .ui-paginator-pages
+            margin: 0
+        .ui-paginator-first
+            border-left: $border-property
+            border-radius: calc(.25rem - 1px) 0 0 calc(.25rem - 1px)
+        .ui-paginator-last
+            border-radius: 0 calc(.25rem - 1px) calc(.25rem - 1px) 0
+    .ui-table .ui-paginator-bottom a,
+    .ui-paginator .ui-paginator-pages .ui-paginator-page
+        border: $border-property
+    .ui-paginator .ui-paginator-icon,
+    .ui-dropdown .ui-dropdown-trigger .ui-dropdown-trigger-icon
+        top: 51%
+    .modal-header
+        border-top-left-radius: .2rem
+        border-top-right-radius: .2rem
+        background-color: $primary-color
+        color: #ffffff
+.modal-dialog
+    margin-top: 30vh
+.showDetails
+    font-size: 13px

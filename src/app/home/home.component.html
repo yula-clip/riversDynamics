@@ -1,0 +1,46 @@
+<nav class="navbar fixed-top flex-nowrap p-0">
+  <div class="navbar-brand text-center pl-4">
+    <h6>Визначення динаміки стану річкових вод</h6>
+  </div>
+  <div class="d-flex justify-content-end navbar-menu">
+    <ul class="nav">
+      <li class="nav-item user-info">
+      </li>
+      <li class="nav-item account-img mr-3" dropdown>
+        <div class="user-icon" dropdownToggle>
+          <fa-icon [icon]="['fas', 'user-circle']"></fa-icon>
+        </div>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right p-0">
+          <li>
+            {{currentUser.name}}
+          </li>
+          <li (click)="logout()">
+            <a class="logout">Вийти</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <app-sidebar></app-sidebar>
+    <main id="main" role="main" class="col px-4">
+      <button type="button" pButton (click)="showConfirm()" label="Confirm" class="ui-button-warning"></button>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
+<p-toast position="top-right" key="riverWarn" (onClose)="onReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+      <h3>{{message.summary}}</h3>
+      <p>{{message.detail}}</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary" (click)="onConfirm()">Спрогнозувати очищення</button>
+    </div>
+  </ng-template>
+</p-toast>

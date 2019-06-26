@@ -1,0 +1,24 @@
+@import "../../app/constants"
+
+.panel-heading, .panel-body
+    padding: .5rem 1rem
+.panel-heading, .card
+    border: none
+    background-color: unset
+.panel-body
+    padding: 0
+.fa-angle-down
+    float: right
+    margin-top: .35rem
+    margin-right: .2rem
+    transition: transform 0s
+.panel-open .fa-angle-down
+    transform: rotate(-180deg)
+.panel-open #heading-accordion-administration.active-accordion-heading
+    background-color: #ffffff
+    .icon
+        fill: $primary-color
+    span,
+    fa-icon
+        color: $color-text
+

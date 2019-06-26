@@ -1,0 +1,37 @@
+@import "../../constants"
+
+a,
+a:hover
+    color: inherit
+.icon,
+.admins-icon
+    fill: $primary-color
+    margin: 0 1rem
+.icon
+    width: 30px
+.admins-icon
+    width: 25px
+.sidebar
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    z-index: 100
+    padding: 66px 0 0
+    min-width: 300px
+    max-width: 300px
+    background-color: #ffffff
+    *
+        user-select: none
+.nav-link.active div,
+.active-accordion-heading
+    color: #ffffff
+    background-color: $primary-color
+    cursor: pointer
+    .admins-icon,
+    .icon
+        fill: #ffffff
+    span
+        color: #ffffff
+.div-ml-4
+    margin-left: 1.5rem

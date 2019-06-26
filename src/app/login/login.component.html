@@ -1,0 +1,47 @@
+﻿<div class="login-page">
+  <div class="col-sm-6 py-5">
+    <h1 class="pb-4 text-center">Вхід</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
+      <div class="form-group">
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" [ngClass]="{ 'is-invalid': formHasError('username')}">
+              <fa-icon [icon]="['fas', 'user']"></fa-icon>
+            </span>
+          </div>
+          <input placeholder="Логін" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': formHasError('username') }"
+            pInputText />
+          <div *ngIf="formHasError('username')" class="invalid-feedback invalid-username">
+            <div>
+              <ng-container *ngTemplateOutlet="isError ? invalidVal : required"></ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group mb-4">
+          <div class="input-group-prepend">
+            <span class="input-group-text" [ngClass]="{ 'is-invalid': formHasError('password') }">
+              <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+            </span>
+          </div>
+          <input placeholder="Пароль" type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': formHasError('password') }"
+            pInputText />
+          <div *ngIf="formHasError('password')" class="invalid-feedback invalid-password">
+            <div>
+              <ng-container *ngTemplateOutlet="isError ? invalidVal : required"></ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #required>Обов'язкове поле</ng-template>
+<ng-template #invalidVal>Поле повинно містити більше 2 символів, та менше 32</ng-template>
