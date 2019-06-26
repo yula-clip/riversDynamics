@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { EditContent } from '../../../_models/edit-content';
 import { RiverSection } from '../../../_models/river-section';
 import { RiverSectionsService } from '../../../_services/river-sections.service';
+import { River } from 'src/app/_models/river';
 
 @Component({
   selector: 'app-river-sections-edit',
@@ -13,6 +14,7 @@ import { RiverSectionsService } from '../../../_services/river-sections.service'
   providers: [MessageService]
 })
 export class RiverSectionsEditComponent extends EditContent<RiverSection> {
+  public rivers: River[];
   constructor(
     private readonly location: Location,
     private readonly riversService: RiverSectionsService,
@@ -24,11 +26,15 @@ export class RiverSectionsEditComponent extends EditContent<RiverSection> {
   }
 
   protected onComponentInit() {
+    this.rivers = [new River(1, 'Прут'), new River(2, 'Дніпро'),
+    new River(3, 'Сірет'), new River(4, 'Дністер')];
   }
 
   protected buildForm(): FormGroup {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
+      river: [null, [Validators.required]],
+      diffuse: [null, [Validators.required]],
     });
   }
 

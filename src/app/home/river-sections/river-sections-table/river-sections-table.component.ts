@@ -14,7 +14,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
   providers: [MessageService]
 })
 export class RiverSectionsTableComponent extends TableContent<RiverSection> {
-  public rivers: RiverSection[];
+  public riverSections: RiverSection[];
   constructor(
     private readonly riversService: RiverSectionsService,
     private readonly modalService: BsModalService,
@@ -27,11 +27,11 @@ export class RiverSectionsTableComponent extends TableContent<RiverSection> {
   protected onComponentInit() {
     library.add(faPlus);
     // this.getItems();
-    this.rivers = [new RiverSection(1, 'Прут'), new RiverSection(2, 'Дніпро'),
-    new RiverSection(3, 'Сірет'), new RiverSection(4, 'Дністер')];
+    this.riverSections = [new RiverSection(1, 'Ділянка Прут'), new RiverSection(2, 'Ділянка Дніпро'),
+    new RiverSection(3, 'Ділянка Сірет'), new RiverSection(4, 'Ділянка Дністер')];
   }
 
-  public setItems(_rivers: RiverSection[]) {
-    this.rivers = _rivers;
+  public setItems(_riverSections: RiverSection[]) {
+    this.riverSections = _riverSections;
   }
 }
