@@ -7,4 +7,5 @@ export class ApiUrls {
     public static readonly RIVER_SECTIONS_ENDPOINT = 'riverSections';
     public static readonly MEASURING_POINTS_ENDPOINT = 'measuringPoints';
     public static readonly SUBSTANCE_ENDPOINT = 'substance';
+    public static readonly REAL_MEASURE_ENDPOINT = 'realMeasure';
 }

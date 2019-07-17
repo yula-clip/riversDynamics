@@ -1,7 +1,7 @@
 import { OnInit, TemplateRef } from '@angular/core';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal/public_api';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AppConstants } from '../app-constants';
 import { AbstractEntity } from '../_models/abstract-entity';
 import { Router, ActivatedRoute } from '@angular/router';

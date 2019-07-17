@@ -7,6 +7,7 @@ import { EditContent } from '../../../_models/edit-content';
 import { RiverSection } from '../../../_models/river-section';
 import { RiverSectionsService } from '../../../_services/river-sections.service';
 import { River } from 'src/app/_models/river';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-river-sections-edit',
@@ -17,12 +18,13 @@ export class RiverSectionsEditComponent extends EditContent<RiverSection> {
   public rivers: River[];
   constructor(
     private readonly location: Location,
-    private readonly riversService: RiverSectionsService,
+    private readonly riverSectionsService: RiverSectionsService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly modalService: BsModalService
   ) {
-    super(location, RiverSectionsService, activatedRoute, messageService);
+    super(location, riverSectionsService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {

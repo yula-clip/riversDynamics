@@ -1,9 +1,9 @@
-import { OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal/public_api';
+import { OnInit, TemplateRef } from '@angular/core';
 import { AppConstants } from '../app-constants';
 import { AbstractEntity } from '../_models/abstract-entity';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Location } from '@angular/common';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { faPencilAlt, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,9 @@ export abstract class EditContent<T extends AbstractEntity> implements OnInit {
     private readonly _location: Location,
     private readonly _service: any,
     private readonly _activatedRoute: ActivatedRoute,
-    private readonly _messageService: MessageService
+    private readonly _messageService: MessageService,
+    private readonly _modalService: BsModalService
+
   ) {
     this.defaultPageOption = AppConstants.DEFAULT_PAGE_OPTIONS;
     this.pageOptions = AppConstants.PAGE_OPTIONS;
@@ -94,6 +96,10 @@ export abstract class EditContent<T extends AbstractEntity> implements OnInit {
     this._location.back();
   }
 
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this._modalService.show(template);
+  }
+
   public onSubmit() {
     this.beforeSubmit();
     if (this.editForm.invalid) {
@@ -117,5 +123,11 @@ export abstract class EditContent<T extends AbstractEntity> implements OnInit {
 
   public getErrorParam(fieldName: string, errorName: string): string {
     return this.editForm.get(fieldName).errors[errorName];
+  }
+
+  public closeModal() {
+    if (this.modalRef) {
+      this.modalRef.hide();
+    }
   }
 }

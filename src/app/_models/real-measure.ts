@@ -1,10 +1,13 @@
 import { MeasuringPoint } from './measuring-point';
 import { Substance } from './substance';
+import { AbstractEntity } from './abstract-entity';
 
-export class RealMeasure {
-  id: number;
+export class RealMeasure extends AbstractEntity {
   date: Date;
   measuringPoints: MeasuringPoint[];
-  substances: Substance[];
+  substance: Substance;
   value: string;
+  constructor(id: number) {
+    super(id);
+}
 }

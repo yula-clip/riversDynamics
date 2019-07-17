@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { EditContent } from '../../../_models/edit-content';
 import { River } from '../../../_models/river';
 import { RiversService } from '../../../_services/rivers.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-rivers-edit',
@@ -18,9 +19,10 @@ export class RiversEditComponent extends EditContent<River> {
     private readonly riversService: RiversService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly modalService: BsModalService
   ) {
-    super(location, RiversService, activatedRoute, messageService);
+    super(location, RiversService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {

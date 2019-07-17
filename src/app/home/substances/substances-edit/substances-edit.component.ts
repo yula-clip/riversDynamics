@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { EditContent } from '../../../_models/edit-content';
 import { Substance } from '../../../_models/substance';
 import { SubstancesService } from '../../../_services/substances.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-substances-edit',
@@ -18,9 +19,10 @@ export class SubstancesEditComponent extends EditContent<Substance> {
     private readonly substancesService: SubstancesService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly modalService: BsModalService
   ) {
-    super(location, SubstancesService, activatedRoute, messageService);
+    super(location, substancesService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {
@@ -43,5 +45,5 @@ export class SubstancesEditComponent extends EditContent<Substance> {
   protected beforeSubmit(): void {
     console.log(this.editForm);
 
-   }
+  }
 }

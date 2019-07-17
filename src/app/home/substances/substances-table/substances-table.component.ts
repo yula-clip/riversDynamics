@@ -16,12 +16,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 export class SubstancesTableComponent extends TableContent<Substance> {
   public substances: Substance[];
   constructor(
-    private readonly riversService: SubstancesService,
+    private readonly substancesService: SubstancesService,
     private readonly modalService: BsModalService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
   ) {
-    super(SubstancesService, modalService, router, activatedRoute);
+    super(substancesService, modalService, router, activatedRoute);
   }
 
   protected onComponentInit() {

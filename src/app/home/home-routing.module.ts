@@ -15,6 +15,7 @@ const homeRoutes: Routes = [
       { path: 'riverSections', loadChildren: './river-sections/index#RiverSectionsModule' },
       { path: 'measuringPoints', loadChildren: './measuring-points/index#MeasuringPointsModule'},
       { path: 'substances', loadChildren: './substances/index#SubstancesModule'},
+      { path: 'realMeasures', loadChildren: './real-measures/index#RealMeasuresModule'},
       { path: '', redirectTo: 'main', pathMatch: 'full' }
     ]
   }

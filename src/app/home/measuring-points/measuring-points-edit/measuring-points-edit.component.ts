@@ -8,6 +8,7 @@ import { MeasuringPointsService } from '../../../_services/measuring-points.serv
 import { River } from 'src/app/_models/river';
 import { MeasuringPoint } from 'src/app/_models';
 import { RiverSection } from 'src/app/_models/river-section';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-measuring-points-edit',
@@ -22,9 +23,10 @@ export class MeasuringPointsEditComponent extends EditContent<MeasuringPoint> {
     private readonly riversService: MeasuringPointsService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly modalService: BsModalService
   ) {
-    super(location, MeasuringPointsService, activatedRoute, messageService);
+    super(location, MeasuringPointsService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {

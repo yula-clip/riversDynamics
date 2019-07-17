@@ -4,7 +4,7 @@ import { SubstancesComponent } from './substances.component';
 import { SubstancesTableComponent } from './substances-table/substances-table.component';
 import { SubstancesEditComponent } from './substances-edit/substances-edit.component';
 
-const riverSectionsRoutes: Routes = [
+const substancesRoutes: Routes = [
   {
     path: '',
     component: SubstancesComponent,
@@ -26,7 +26,7 @@ const riverSectionsRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(riverSectionsRoutes)],
+  imports: [RouterModule.forChild(substancesRoutes)],
   exports: [RouterModule]
 })
 export class SubstancesRoutingModule { }

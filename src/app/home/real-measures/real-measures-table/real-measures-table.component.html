@@ -1,0 +1,70 @@
+<div class="py-3">
+  <h5>Реальні виміри</h5>
+</div>
+<div class="row justify-content-between mb-3">
+  <div class="col-1">
+    <button class="btn btn-sm btn-outline-secondary add-item table-btn" (click)="openCreateScreen()">
+      <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+    </button>
+  </div>
+</div>
+<p-table [value]="realMeasures" [paginator]="true" [rows]="defaultPageOption" >
+  <ng-template pTemplate="header">
+    <tr>
+      <th id="th-table">
+        Дата
+      </th>
+      <th id="th-table">
+        Речовина
+      </th>
+      <th id="th-table">
+        Значення
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-realMeasure>
+    <tr id="tr-table">
+      <td>
+          <h6>{{realMeasure.date}}</h6>
+      </td>
+      <td>
+          <h6>{{realMeasure.substance.name}}</h6>
+      </td>
+      <td>
+        <div class="d-flex justify-content-between align-items-center">
+          <h6>{{realMeasure.value}}</h6>
+          <div>
+            <button class="btn btn-sm btn-outline-secondary table-btn" (click)="openEditScreen(realMeasure)">
+              <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+            </button>
+            <button class="btn btn-sm btn-outline-secondary table-btn"
+              (click)="showDeleteConfirmation(realMeasure, template)">
+              <fa-icon [icon]="['fas', 'trash']"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 id="dialog-auto-name" class="modal-title pull-left">Повідомлення</h4>
+    <button *ngIf="error" type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="error" class="modal-body error-message">
+    {{error}}
+  </div>
+  <div *ngIf="!error">
+    <div class="modal-body">
+      Ви впевнені, що хочете видалити "{{itemToDelete.name}}"?
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn border" (click)="modalRef.hide()">Cancel</button>
+      <button type="button" class="btn btn-primary" (click)="deleteItem(itemToDelete.id)">Ok</button>
+    </div>
+  </div>
+</ng-template>
