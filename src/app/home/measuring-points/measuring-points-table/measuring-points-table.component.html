@@ -1,5 +1,5 @@
 <div class="py-3">
-  <h5>Ділянки річок</h5>
+  <h5>Точки виміру</h5>
 </div>
 <div class="row justify-content-between mb-3">
   <div class="col-1">
@@ -8,7 +8,7 @@
     </button>
   </div>
 </div>
-<p-table [value]="riverSections" [paginator]="true" [rows]="defaultPageOption" >
+<p-table [value]="measuringPoints" [paginator]="true" [rows]="defaultPageOption" >
   <ng-template pTemplate="header">
     <tr>
       <th id="th-table">
@@ -16,17 +16,17 @@
       </th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-riverSection>
+  <ng-template pTemplate="body" let-measuringPoint>
     <tr id="tr-table">
       <td>
         <div class="d-flex justify-content-between align-items-center">
-          <h6>{{riverSection.name}}</h6>
+          <h6>{{measuringPoint.name}}</h6>
           <div>
-            <button class="btn btn-sm btn-outline-secondary table-btn" (click)="openEditScreen(riverSection)">
+            <button class="btn btn-sm btn-outline-secondary table-btn" (click)="openEditScreen(measuringPoint)">
               <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
             </button>
             <button class="btn btn-sm btn-outline-secondary table-btn"
-              (click)="showDeleteConfirmation(riverSection, template)">
+              (click)="showDeleteConfirmation(measuringPoint, template)">
               <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
           </div>

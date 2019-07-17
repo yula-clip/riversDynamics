@@ -13,6 +13,7 @@ const homeRoutes: Routes = [
       { path: 'main', loadChildren: './main-page/index#MainPageModule' },
       { path: 'rivers', loadChildren: './rivers/index#RiversModule' },
       { path: 'riverSections', loadChildren: './river-sections/index#RiverSectionsModule' },
+      { path: 'measuringPoints', loadChildren: './measuring-points/index#MeasuringPointsModule'},
       { path: '', redirectTo: 'main', pathMatch: 'full' }
     ]
   }
