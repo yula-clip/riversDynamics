@@ -40,7 +40,7 @@
     <div class="form-group row">
         <label for="diffuse" class="col-md-4 col-form-label text-right require">Дифузність</label>
         <div class="col-md-6">
-          <input id="diffuse" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('diffuse')}" type="text"
+          <input id="diffuse" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('diffuse')}"
             formControlName="diffuse" autofocus />
           <div *ngIf="isFieldError('diffuse')" class="invalid-feedback ">
             <div *ngIf="getErrorParam('diffuse', 'required')">

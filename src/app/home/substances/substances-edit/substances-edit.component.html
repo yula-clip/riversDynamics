@@ -1,0 +1,130 @@
+<p-toast [style]="{marginTop: '80px'}" position="top-right"></p-toast>
+<div class="py-3">
+  <h5 *ngIf="isCreate">Створення речовини</h5>
+  <h5 *ngIf="!isCreate">Редагування речовини</h5>
+</div>
+<div class="edit-page">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="substance-name" class="col-md-4 col-form-label text-right require">Назва речовини</label>
+      <div class="col-md-6">
+        <input id="substance-name" class="form-control" [ngClass]="{'is-invalid': isFieldError('name')}" type="text"
+          formControlName="name" autofocus />
+        <div *ngIf="isFieldError('name')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('name', 'required')">
+            Обов'язкове поле
+          </div>
+          <div *ngIf="getErrorParam('name', 'minlength') || getErrorParam('name', 'maxlength')">
+            Поле повинно містити більше 2 символів, та менше 32
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="substance-latinName" class="col-md-4 col-form-label text-right require">Латинська назва речовини</label>
+      <div class="col-md-6">
+        <input id="substance-latinName" class="form-control" [ngClass]="{'is-invalid': isFieldError('latinName')}" type="text"
+          formControlName="latinName" autofocus />
+        <div *ngIf="isFieldError('latinName')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('latinName', 'required')">
+            Обов'язкове поле
+          </div>
+          <div *ngIf="getErrorParam('latinName', 'minlength') || getErrorParam('latinName', 'maxlength')">
+            Поле повинно містити більше 2 символів, та менше 32
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="coefficient1" class="col-md-4 col-form-label text-right require">K1</label>
+        <div class="col-md-6">
+          <input id="coefficient1" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient1')}"
+            formControlName="coefficient1" autofocus />
+          <div *ngIf="isFieldError('coefficient1')" class="invalid-feedback ">
+            <div *ngIf="getErrorParam('coefficient1', 'required')">
+              Обов'язкове поле
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="coefficient2" class="col-md-4 col-form-label text-right require">K2</label>
+      <div class="col-md-6">
+        <input id="coefficient2" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient2')}"
+          formControlName="coefficient2" autofocus />
+        <div *ngIf="isFieldError('coefficient2')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('coefficient2', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="coefficient3" class="col-md-4 col-form-label text-right require">K3</label>
+      <div class="col-md-6">
+        <input id="coefficient3" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient3')}"
+          formControlName="coefficient3" autofocus />
+        <div *ngIf="isFieldError('coefficient3')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('coefficient3', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="unitsOfMeasurement" class="col-md-4 col-form-label text-right require">Одиниці вимірювання</label>
+      <div class="col-md-6">
+        <input id="unitsOfMeasurement" class="form-control" [ngClass]="{'is-invalid': isFieldError('unitsOfMeasurement')}" type="text"
+          formControlName="unitsOfMeasurement" autofocus />
+        <div *ngIf="isFieldError('unitsOfMeasurement')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('unitsOfMeasurement', 'required')">
+            Обов'язкове поле
+          </div>
+          <div *ngIf="getErrorParam('unitsOfMeasurement', 'minlength') || getErrorParam('unitsOfMeasurement', 'maxlength')">
+            Поле повинно містити більше 2 символів, та менше 32
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="validValues" class="col-md-4 col-form-label text-right require">Допустиме значення в одиниці вимірювання</label>
+      <div class="col-md-6">
+        <input id="validValues" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('validValues')}"
+          formControlName="validValues" autofocus />
+        <div *ngIf="isFieldError('validValues')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('validValues', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-md-4 text-right require">Статус</legend>
+        <div class="col-md-6 col-form-label">
+          <label class="radiobutton-container">Забруднення
+            <input id="pollution" type="radio" [value]="false" formControlName="status" checked>
+            <span for="pollution" class="checkmark"></span>
+          </label>
+          <label class="radiobutton-container">Очищення
+            <input id="clear" type="radio" [value]="true" formControlName="status">
+            <span for="clear" class="checkmark"></span>
+          </label>
+          <div *ngIf="isFieldError('status')" class="invalid-feedback ">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-group row">
+      <div class="col-md-10 text-right">
+        <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
+          Скасувати
+        </button>
+        <button class="btn btn-primary" type="submit" [disabled]="loading || editForm.invalid">
+          Зберегти
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

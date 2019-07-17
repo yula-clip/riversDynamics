@@ -23,7 +23,7 @@
     <div class="form-group row">
       <label for="x" class="col-md-4 col-form-label text-right require">x</label>
       <div class="col-md-6">
-        <input id="x" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('x')}" type="text"
+        <input id="x" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('x')}"
           formControlName="x" autofocus />
         <div *ngIf="isFieldError('x')" class="invalid-feedback ">
           <div *ngIf="getErrorParam('x', 'required')">
@@ -35,7 +35,7 @@
     <div class="form-group row">
       <label for="y" class="col-md-4 col-form-label text-right require">y</label>
       <div class="col-md-6">
-        <input id="y" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('y')}" type="text"
+        <input id="y" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('y')}"
           formControlName="y" autofocus />
         <div *ngIf="isFieldError('y')" class="invalid-feedback ">
           <div *ngIf="getErrorParam('y', 'required')">

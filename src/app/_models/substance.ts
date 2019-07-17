@@ -9,7 +9,6 @@ export class Substance extends AbstractEntity {
   coefficient2: number;
   coefficient3: number;
   unitsOfMeasurement: string;
-  unitsOfMeasurementCollapse: string;
   validValues: number;
   status: boolean;
 }
