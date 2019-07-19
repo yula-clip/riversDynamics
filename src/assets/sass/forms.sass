@@ -24,10 +24,10 @@
     left: 0
     height: 15px
     width: 15px
-    background-color: $color-background
+    background-color: $input-border-color
     border-radius: 50%
 .radiobutton-container:hover input ~ .checkmark
-    background-color: $input-border-color
+    background-color: $color-icons
 .radiobutton-container input:checked ~ .checkmark
     background-color: $primary-color
 .checkmark:after
@@ -68,3 +68,48 @@
     max-width: 600px
     margin-left: auto
     margin-right: auto
+.checkbox-container
+    display: block
+    position: relative
+    padding-left: 35px
+    margin-bottom: 12px
+    cursor: pointer
+    font-size: 22px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    input
+        position: absolute
+        opacity: 0
+        cursor: pointer
+        height: 0
+        width: 0
+    .checkmark
+        position: absolute
+        top: 8px
+        left: 0
+        height: 20px
+        width: 20px
+        border-radius: .25rem
+        background-color: $input-border-color
+    input:checked ~ .checkmark
+        background-color: $primary-color
+    .checkmark:after
+        content: ""
+        position: absolute
+        display: none
+    input:checked ~ .checkmark:after
+        display: block
+    .checkmark:after
+        left: 7px
+        top: 4px
+        width: 7px
+        height: 10px
+        border: solid white
+        border-width: 0 3px 3px 0
+        -webkit-transform: rotate(45deg)
+        -ms-transform: rotate(45deg)
+        transform: rotate(45deg)
+.checkbox-container:hover input ~ .checkmark
+  background-color: $color-icons
