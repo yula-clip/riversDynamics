@@ -1,0 +1,72 @@
+<p-toast [style]="{marginTop: '80px'}" position="top-right"></p-toast>
+<div class="py-3">
+  <h5 *ngIf="isCreate">Створення витраченої речовини очистки</h5>
+  <h5 *ngIf="!isCreate">Редагування витраченої речовини очистки</h5>
+</div>
+<div class="edit-page">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group row">
+      <label for="date" class="col-md-4 col-form-label text-right require">Дата очистки</label>
+      <div class="col-md-6">
+        <p-calendar id="date" [ngClass]="{'is-invalid': isFieldError('date')}" formControlName="date" [showTime]="true">
+        </p-calendar>
+        <div *ngIf="isFieldError('date')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('date', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class="form-group row">
+    <label for="substance" class="col-md-4 col-form-label text-right require">Речовини очистки</label>
+    <div class="col-md-6">
+      <button class="btn btn-outline-secondary table-edit-btn" type="button" (click)="openModal(template)">
+        <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="form-group row" [formGroup]="editForm">
+    <div class="col-md-10 text-right">
+      <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
+        Скасувати
+      </button>
+      <button class="btn btn-primary" type="submit" [disabled]="loading || editForm.invalid">
+        Зберегти
+      </button>
+    </div>
+  </div>
+</form>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Додати речовину очистки
+    </h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()" id="closeButton">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-break">
+    <div class="form-group row">
+      <label for="substance" class="col-md-4 col-form-label text-right require">Речовина</label>
+      <div class="col-md-4">
+        <select class="form-control" [(ngModel)]="newCleaningSubstance">
+          <option *ngFor="let cleaningSubstance of allCleaningSubstances" [ngValue]="cleaningSubstance">
+            {{cleaningSubstance.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Кількість" type="number" [(ngModel)]="newCleaningSubstanceCount" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn border"
+        (click)="addCleaningSubstance(newCleaningSubstance, newCleaningSubstanceCount)" id="closeInfoButton">
+        <fa-icon [icon]="['fas', 'plus']"></fa-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>

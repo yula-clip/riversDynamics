@@ -16,6 +16,7 @@ const homeRoutes: Routes = [
       { path: 'measuringPoints', loadChildren: './measuring-points/index#MeasuringPointsModule'},
       { path: 'substances', loadChildren: './substances/index#SubstancesModule'},
       { path: 'realMeasures', loadChildren: './real-measures/index#RealMeasuresModule'},
+      { path: 'spentCleaningSubstances', loadChildren: './spent-cleaning-substances/index#SpentCleaningSubstancesModule'},
       { path: 'users', loadChildren: './users/index#UsersModule'},
       { path: '', redirectTo: 'main', pathMatch: 'full' }
     ]
