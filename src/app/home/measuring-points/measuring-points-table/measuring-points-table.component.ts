@@ -6,7 +6,7 @@ import { MeasuringPointsService } from '../../../_services/measuring-points.serv
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { MeasuringPoint } from 'src/app/_models';
+import { MeasuringPoint } from '../../../_models';
 
 @Component({
   selector: 'app-measuring-points-table',

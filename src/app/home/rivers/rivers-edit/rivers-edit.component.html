@@ -6,7 +6,7 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label for="river-name" class="col-md-4 col-form-label text-right require">Назва річки</label>
+      <label for="river-name" class="col-md-6 col-form-label text-right require">Назва річки</label>
       <div class="col-md-6">
         <input id="river-name" class="form-control" [ngClass]="{'is-invalid': isFieldError('name')}" type="text"
           formControlName="name" autofocus />
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-md-10 text-right">
+      <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
           Скасувати
         </button>

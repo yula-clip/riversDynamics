@@ -10,6 +10,7 @@ import { SpentCleaningSubstancesTableComponent } from './spent-cleaning-substanc
 import { SpentCleaningSubstancesRoutingModule } from './spent-cleaning-substances-routing.module';
 import { PickItemFromListModule } from '../../_components/pick-list';
 import { CalendarModule } from 'primeng/calendar';
+import { CleaningSubstancesComponent } from './cleaning-substances/cleaning-substances.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { CalendarModule } from 'primeng/calendar';
   declarations: [
     SpentCleaningSubstancesComponent,
     SpentCleaningSubstancesEditComponent,
-    SpentCleaningSubstancesTableComponent
+    SpentCleaningSubstancesTableComponent,
+    CleaningSubstancesComponent
   ]
 })
 export class SpentCleaningSubstancesModule { }

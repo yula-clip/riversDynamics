@@ -6,7 +6,7 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label for="substance-name" class="col-md-4 col-form-label text-right require">Назва речовини</label>
+      <label for="substance-name" class="col-md-6 col-form-label text-right require">Назва речовини</label>
       <div class="col-md-6">
         <input id="substance-name" class="form-control" [ngClass]="{'is-invalid': isFieldError('name')}" type="text"
           formControlName="name" autofocus />
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="substance-latinName" class="col-md-4 col-form-label text-right require">Латинська назва речовини</label>
+      <label for="substance-latinName" class="col-md-6 col-form-label text-right require">Латинська назва речовини</label>
       <div class="col-md-6">
         <input id="substance-latinName" class="form-control" [ngClass]="{'is-invalid': isFieldError('latinName')}" type="text"
           formControlName="latinName" autofocus />
@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="form-group row">
-        <label for="coefficient1" class="col-md-4 col-form-label text-right require">K1</label>
+        <label for="coefficient1" class="col-md-6 col-form-label text-right require">K1</label>
         <div class="col-md-6">
           <input id="coefficient1" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient1')}"
             formControlName="coefficient1" autofocus />
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="form-group row">
-      <label for="coefficient2" class="col-md-4 col-form-label text-right require">K2</label>
+      <label for="coefficient2" class="col-md-6 col-form-label text-right require">K2</label>
       <div class="col-md-6">
         <input id="coefficient2" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient2')}"
           formControlName="coefficient2" autofocus />
@@ -60,7 +60,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="coefficient3" class="col-md-4 col-form-label text-right require">K3</label>
+      <label for="coefficient3" class="col-md-6 col-form-label text-right require">K3</label>
       <div class="col-md-6">
         <input id="coefficient3" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient3')}"
           formControlName="coefficient3" autofocus />
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="unitsOfMeasurement" class="col-md-4 col-form-label text-right require">Одиниці вимірювання</label>
+      <label for="unitsOfMeasurement" class="col-md-6 col-form-label text-right require">Одиниці вимірювання</label>
       <div class="col-md-6">
         <input id="unitsOfMeasurement" class="form-control" [ngClass]="{'is-invalid': isFieldError('unitsOfMeasurement')}" type="text"
           formControlName="unitsOfMeasurement" autofocus />
@@ -87,7 +87,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="validValues" class="col-md-4 col-form-label text-right require">Допустиме значення в одиниці вимірювання</label>
+      <label for="validValues" class="col-md-6 col-form-label text-right require">Допустиме значення в одиниці вимірювання</label>
       <div class="col-md-6">
         <input id="validValues" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('validValues')}"
           formControlName="validValues" autofocus />
@@ -100,7 +100,7 @@
     </div>
     <fieldset class="form-group">
       <div class="row">
-        <legend class="col-form-label col-md-4 text-right require">Статус</legend>
+        <legend class="col-form-label col-md-6 text-right require">Статус</legend>
         <div class="col-md-6 col-form-label">
           <label class="radiobutton-container">Забруднення
             <input id="pollution" type="radio" [value]="false" formControlName="status" checked>
@@ -117,7 +117,7 @@
       </div>
     </fieldset>
     <div class="form-group row">
-      <div class="col-md-10 text-right">
+      <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
           Скасувати
         </button>

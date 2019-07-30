@@ -6,7 +6,7 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label for="measuring-points-name" class="col-md-4 col-form-label text-right require">Назва точки виміру</label>
+      <label for="measuring-points-name" class="col-md-6 col-form-label text-right require">Назва точки виміру</label>
       <div class="col-md-6">
         <input id="measuring-points-name" class="form-control" [ngClass]="{'is-invalid': isFieldError('name')}" type="text"
           formControlName="name" autofocus />
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="x" class="col-md-4 col-form-label text-right require">x</label>
+      <label for="x" class="col-md-6 col-form-label text-right require">x</label>
       <div class="col-md-6">
         <input id="x" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('x')}"
           formControlName="x" autofocus />
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="y" class="col-md-4 col-form-label text-right require">y</label>
+      <label for="y" class="col-md-6 col-form-label text-right require">y</label>
       <div class="col-md-6">
         <input id="y" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('y')}"
           formControlName="y" autofocus />
@@ -45,10 +45,11 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="river-name" class="col-md-4 col-form-label text-right require">Річка</label>
+      <label for="river-name" class="col-md-6 col-form-label text-right require">Річка</label>
       <div class="col-md-6">
-        <select class="form-control" formControlName="river">
-          <option value="null">Виберіть річку</option>
+        <select class="form-control" formControlName="river"
+        (change)="setNewRiverSections()">
+          <option [value]="null">Виберіть річку</option>
           <option *ngFor="let river of rivers" [ngValue]="river">{{river.name}}</option>
         </select>
         <div *ngIf="isFieldError('river')" class="invalid-feedback ">
@@ -62,7 +63,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="riverSection-name" class="col-md-4 col-form-label text-right require">Ділянка річки</label>
+      <label for="riverSection-name" class="col-md-6 col-form-label text-right require">Ділянка річки</label>
       <div class="col-md-6">
         <select class="form-control" formControlName="riverSection">
           <option value="null">Виберіть ділянку річки</option>
@@ -79,7 +80,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <div class="col-md-10 text-right">
+      <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
           Скасувати
         </button>

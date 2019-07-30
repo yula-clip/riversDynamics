@@ -6,7 +6,7 @@ import { Location } from '@angular/common';
 import { EditContent } from '../../../_models/edit-content';
 import { RiverSection } from '../../../_models/river-section';
 import { RiverSectionsService } from '../../../_services/river-sections.service';
-import { River } from 'src/app/_models/river';
+import { River } from '../../../_models/river';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({

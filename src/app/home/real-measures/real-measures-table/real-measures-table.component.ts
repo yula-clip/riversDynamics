@@ -7,7 +7,9 @@ import { RealMeasuresService } from '../../../_services/real-measures.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { MeasuringPoint, Substance } from 'src/app/_models';
+import { MeasuringPoint, Substance } from '../../../_models';
+import * as moment from 'moment';
+import { AppConstants } from '../../../app-constants';
 
 @Component({
   selector: 'app-real-measures-table',
@@ -40,5 +42,9 @@ export class RealMeasuresTableComponent extends TableContent<RealMeasure> {
 
   public setItems(_realMeasures: RealMeasure[]) {
     this.realMeasures = _realMeasures;
+  }
+
+  public convertDate(dateTime: Date): string {
+    return moment(dateTime).toDate().toLocaleString(AppConstants.LOCALE, AppConstants.DATE_OPTIONS);
   }
 }

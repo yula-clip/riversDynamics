@@ -8,7 +8,7 @@
     </button>
   </div>
 </div>
-<p-table [value]="realMeasures" [paginator]="true" [rows]="defaultPageOption" >
+<p-table [value]="realMeasures" [paginator]="true" [rows]="defaultPageOption">
   <ng-template pTemplate="header">
     <tr>
       <th id="th-table">
@@ -25,10 +25,10 @@
   <ng-template pTemplate="body" let-realMeasure>
     <tr id="tr-table">
       <td>
-          <h6>{{realMeasure.date}}</h6>
+        <h6>{{convertDate(realMeasure.date)}}</h6>
       </td>
       <td>
-          <h6>{{realMeasure.substance.name}}</h6>
+        <h6>{{realMeasure.substance.name}}</h6>
       </td>
       <td>
         <div class="d-flex justify-content-between align-items-center">
@@ -60,11 +60,11 @@
   </div>
   <div *ngIf="!error">
     <div class="modal-body">
-      Ви впевнені, що хочете видалити "{{itemToDelete.name}}"?
+      Ви впевнені, що хочете видалити виміри за дату:{{convertDate(itemToDelete.date)}}?
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn border" (click)="modalRef.hide()">Cancel</button>
-      <button type="button" class="btn btn-primary" (click)="deleteItem(itemToDelete.id)">Ok</button>
+      <button type="button" class="btn border" (click)="modalRef.hide()">Скасувати</button>
+      <button type="button" class="btn btn-primary" (click)="deleteItem(itemToDelete.id)">Ок</button>
     </div>
   </div>
 </ng-template>

@@ -6,7 +6,7 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-        <label for="date" class="col-md-4 col-form-label text-right require">Дата виміру</label>
+        <label for="date" class="col-md-6 col-form-label text-right require">Дата виміру</label>
         <div class="col-md-6">
             <p-calendar id="date"  [ngClass]="{'is-invalid': isFieldError('date')}" formControlName="date"  [showTime]="true"></p-calendar>
           <div *ngIf="isFieldError('date')" class="invalid-feedback ">
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="substance" class="col-md-4 col-form-label text-right require">Речовина</label>
+        <label for="substance" class="col-md-6 col-form-label text-right require">Речовина</label>
         <div class="col-md-6">
           <select class="form-control" formControlName="substance">
             <option value="null">Виберіть речовину</option>
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="value" class="col-md-4 col-form-label text-right require">Значення виміру</label>
+        <label for="value" class="col-md-6 col-form-label text-right require">Значення виміру</label>
         <div class="col-md-6">
           <input id="value" type="text" class="form-control" [ngClass]="{'is-invalid': isFieldError('value')}"
             formControlName="value" autofocus />
@@ -52,7 +52,7 @@
         </div>
       </div>
     <div class="form-group row">
-      <div class="col-md-10 text-right">
+      <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
           Скасувати
         </button>

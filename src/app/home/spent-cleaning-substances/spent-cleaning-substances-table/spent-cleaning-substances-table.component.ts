@@ -7,7 +7,10 @@ import { SpentCleaningSubstancesService } from '../../../_services/spent-cleanin
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { Substance } from 'src/app/_models';
+import { Substance } from '../../../_models';
+import * as moment from 'moment';
+import { AppConstants } from '../../../app-constants';
+
 
 @Component({
   selector: 'app-spent-cleaning-substances-table',
@@ -42,5 +45,9 @@ export class SpentCleaningSubstancesTableComponent extends TableContent<SpentCle
 
   public setItems(_spentCleaningSubstances: SpentCleaningSubstance[]) {
     this.spentCleaningSubstances = _spentCleaningSubstances;
+  }
+
+  public convertDate(dateTime: Date): string {
+    return moment(dateTime).toDate().toLocaleString(AppConstants.LOCALE, AppConstants.DATE_OPTIONS);
   }
 }
