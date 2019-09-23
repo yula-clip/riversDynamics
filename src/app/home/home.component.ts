@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models';
 import { AuthenticationService } from '../_services';
 import { Router } from '@angular/router';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +13,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 })
 
 export class HomeComponent implements OnInit {
-  public currentUser: User;
+  public currentUserName: string;
 
   constructor(
     private readonly router: Router,
@@ -24,10 +23,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     library.add(faUserCircle);
-    // this.authenticationService.currentUser.subscribe(user => {
-    //   this.currentUser = user;
-    // });
-    this.currentUser = new User(1, 'Admin');
+    this.currentUserName = this.authenticationService.getCurrentUser.name;
+
   }
 
   public logout() {

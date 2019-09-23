@@ -8,34 +8,38 @@ import { ApiUrls } from '../api-urls';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService extends BaseCRUDService<User> {
-    private readonly currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
+  private readonly currentUserSubject: BehaviorSubject<User>;
 
-    constructor(private readonly http: HttpClient) {
-        super(ApiUrls.LOGIN_ENDPOINT, http);
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
-    }
+  constructor(private readonly http: HttpClient) {
+    super(ApiUrls.LOGIN_ENDPOINT, http);
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  }
 
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
-    }
+  public get getCurrentUser(): User {
+    return this.currentUserSubject.value;
+  }
 
-    public login(username: string, password: string): Observable<User> {
-        return this.http.post<any>(this.generateLink(), { password, username })
-            .pipe(map(user => {
-                if (user && user.token) {
-                    const authHeader = `Bearer ${user.token}`;
-                    sessionStorage.setItem('authHeader', authHeader);
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                    return user;
-                }
-            }));
-    }
+  public login(email: string, password: string): Observable<User> {
+    return this.http.post<User>(this.generateLink(), { email: email, password: password })
+      .pipe(
+        map((userInfo: any) => {
+          const user = userInfo[1];
+          user.token = userInfo[0].token;
+          if (user && user.token) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
+            return user;
+          }
+        })
+      );
+  }
 
-    public logout() {
-        localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
-    }
+  public logout() {
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.getCurrentUser;
+  }
 }

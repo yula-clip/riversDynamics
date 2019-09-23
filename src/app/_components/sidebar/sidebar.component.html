@@ -22,7 +22,7 @@
           </div>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="showForAdmin()">
         <accordion>
           <accordion-group [isOpen]="isOpenedAdministration(rivers, riverSections, substances, measuringPoints, realMeasures, spentCleaningSubstances, users)">
             <div id="heading-accordion-administration" class="rounded"

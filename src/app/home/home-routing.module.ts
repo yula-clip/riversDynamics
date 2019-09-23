@@ -8,17 +8,52 @@ const homeRoutes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
-      { path: 'main', loadChildren: './main-page/index#MainPageModule' },
-      { path: 'rivers', loadChildren: './rivers/index#RiversModule' },
-      { path: 'riverSections', loadChildren: './river-sections/index#RiverSectionsModule' },
-      { path: 'measuringPoints', loadChildren: './measuring-points/index#MeasuringPointsModule'},
-      { path: 'substances', loadChildren: './substances/index#SubstancesModule'},
-      { path: 'realMeasures', loadChildren: './real-measures/index#RealMeasuresModule'},
-      { path: 'spentCleaningSubstances', loadChildren: './spent-cleaning-substances/index#SpentCleaningSubstancesModule'},
-      { path: 'users', loadChildren: './users/index#UsersModule'},
-      { path: '', redirectTo: 'main', pathMatch: 'full' }
+      {
+        path: 'main',
+        loadChildren: './main-page/index#MainPageModule'
+      },
+      {
+        path: 'rivers',
+        data: { isAdmin: true },
+        loadChildren: './rivers/index#RiversModule'
+      },
+      {
+        path: 'riverSections',
+        data: { isAdmin: true },
+        loadChildren: './river-sections/index#RiverSectionsModule'
+      },
+      {
+        path: 'measuringPoints',
+        data: { isAdmin: true },
+        loadChildren: './measuring-points/index#MeasuringPointsModule'
+      },
+      {
+        path: 'substances',
+        data: { isAdmin: true },
+        loadChildren: './substances/index#SubstancesModule'
+      },
+      {
+        path: 'realMeasures',
+        data: { isAdmin: true },
+        loadChildren: './real-measures/index#RealMeasuresModule'
+      },
+      {
+        path: 'spentCleaningSubstances',
+        data: { isAdmin: true },
+        loadChildren: './spent-cleaning-substances/index#SpentCleaningSubstancesModule'
+      },
+      {
+        path: 'users',
+        data: { isAdmin: true },
+        loadChildren: './users/index#UsersModule'
+      },
+      {
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full'
+      }
     ]
   }
 ];

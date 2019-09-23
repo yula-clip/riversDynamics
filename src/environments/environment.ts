@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  apiLink: 'https://localhost:8443',
-  apiVersion: 'v1'
+  apiLink: 'http://api.diploma.com',
 };
 
 /*

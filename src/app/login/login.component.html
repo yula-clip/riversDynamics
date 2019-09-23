@@ -5,13 +5,13 @@
       <div class="form-group">
         <div class="input-group mb-4">
           <div class="input-group-prepend">
-            <span class="input-group-text" [ngClass]="{ 'is-invalid': formHasError('username')}">
+            <span class="input-group-text" [ngClass]="{ 'is-invalid': formHasError('email')}">
               <fa-icon [icon]="['fas', 'user']"></fa-icon>
             </span>
           </div>
-          <input placeholder="Логін" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': formHasError('username') }"
+          <input placeholder="Email" type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': formHasError('email') }"
             pInputText />
-          <div *ngIf="formHasError('username')" class="invalid-feedback invalid-username">
+          <div *ngIf="formHasError('email')" class="invalid-feedback invalid-email">
             <div>
               <ng-container *ngTemplateOutlet="isError ? invalidVal : required"></ng-container>
             </div>
@@ -44,4 +44,4 @@
 </div>
 
 <ng-template #required>Обов'язкове поле</ng-template>
-<ng-template #invalidVal>Поле повинно містити більше 2 символів, та менше 32</ng-template>
+<ng-template #invalidVal>Введіть правильні дані</ng-template>

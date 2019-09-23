@@ -2,6 +2,7 @@
 export class User extends AbstractEntity {
     public token?: string;
     public isAdmin: boolean;
+    public email: string;
     constructor(id: number, name: string) {
         super(id, name);
     }

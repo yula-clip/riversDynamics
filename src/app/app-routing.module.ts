@@ -8,7 +8,7 @@ const appRoutes: Routes = [
     {
         path: '',
         loadChildren: './home/home.module#HomeModule',
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
     },
     { path: 'login', component: LoginComponent },
     { path: '**', redirectTo: '' }
