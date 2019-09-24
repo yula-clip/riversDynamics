@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AppConstants } from '../app-constants';
 import { AbstractEntity } from '../_models/abstract-entity';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BaseCRUDService } from '../_services/base-crud.service';
 
 export abstract class TableContent<T extends AbstractEntity> implements OnInit {
     public modalRef: BsModalRef;
@@ -14,7 +15,7 @@ export abstract class TableContent<T extends AbstractEntity> implements OnInit {
     public error: string;
 
     constructor(
-        private readonly _service: any,
+        private readonly _service: BaseCRUDService<T>,
         private readonly _modalService: BsModalService,
         private readonly _router: Router,
         private readonly _activatedRoute: ActivatedRoute

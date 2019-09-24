@@ -21,14 +21,12 @@ export class UsersTableComponent extends TableContent<User> {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
   ) {
-    super(UsersService, modalService, router, activatedRoute);
+    super(usersService, modalService, router, activatedRoute);
   }
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    this.users = [new User(1, 'User1'), new User(2, 'User2'),
-    new User(3, 'User3'), new User(4, 'User4')];
+    this.getItems();
   }
 
   public setItems(_users: User[]) {

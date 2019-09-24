@@ -22,7 +22,7 @@ export class RiversEditComponent extends EditContent<River> {
     private readonly messageService: MessageService,
     private readonly modalService: BsModalService
   ) {
-    super(location, RiversService, activatedRoute, messageService, modalService);
+    super(location, riversService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {

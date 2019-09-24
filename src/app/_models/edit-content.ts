@@ -8,6 +8,7 @@ import { Location } from '@angular/common';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { faPencilAlt, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { BaseCRUDService } from '../_services/base-crud.service';
 
 
 export abstract class EditContent<T extends AbstractEntity> implements OnInit {
@@ -21,7 +22,7 @@ export abstract class EditContent<T extends AbstractEntity> implements OnInit {
 
   constructor(
     private readonly _location: Location,
-    private readonly _service: any,
+    private readonly _service: BaseCRUDService<T>,
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _messageService: MessageService,
     private readonly _modalService: BsModalService

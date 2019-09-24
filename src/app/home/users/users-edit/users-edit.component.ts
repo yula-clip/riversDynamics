@@ -22,7 +22,7 @@ export class UsersEditComponent extends EditContent<User> {
     private readonly messageService: MessageService,
     private readonly modalService: BsModalService
   ) {
-    super(location, UsersService, activatedRoute, messageService, modalService);
+    super(location, usersService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {
@@ -31,6 +31,7 @@ export class UsersEditComponent extends EditContent<User> {
   protected buildForm(): FormGroup {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
+      email: [null, [Validators.required, Validators.minLength(2), Validators.email, Validators.maxLength(32)]],
       isAdmin: [false],
     });
   }

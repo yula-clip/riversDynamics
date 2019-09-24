@@ -28,7 +28,7 @@ export class MeasuringPointsEditComponent extends EditContent<MeasuringPoint> {
     private readonly messageService: MessageService,
     private readonly modalService: BsModalService
   ) {
-    super(location, MeasuringPointsService, activatedRoute, messageService, modalService);
+    super(location, riversService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {

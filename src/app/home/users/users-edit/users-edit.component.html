@@ -6,7 +6,7 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <label for="user-name" class="col-md-6 col-form-label text-right require">Назва річки</label>
+      <label for="user-name" class="col-md-6 col-form-label text-right require">Ім'я</label>
       <div class="col-md-6">
         <input id="user-name" class="form-control" [ngClass]="{'is-invalid': isFieldError('name')}" type="text"
           formControlName="name" autofocus />
@@ -21,10 +21,28 @@
       </div>
     </div>
     <div class="form-group row">
-      <label for="isAdmin" class="col-lg-4 col-md-6 col-form-label text-right">
+      <label for="user-email" class="col-md-6 col-form-label text-right require">Email</label>
+      <div class="col-md-6">
+        <input id="user-email" class="form-control" [ngClass]="{'is-invalid': isFieldError('email')}" type="text"
+          formControlName="email" autofocus />
+        <div *ngIf="isFieldError('email')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('email', 'required')">
+            Обов'язкове поле
+          </div>
+          <div *ngIf="getErrorParam('email', 'email')">
+            Введіть правильний email
+          </div>
+          <div *ngIf="getErrorParam('email', 'minlength') || getErrorParam('email', 'maxlength')">
+            Поле повинно містити більше 2 символів, та менше 32
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="isAdmin" class="col-md-6 col-form-label text-right">
         Адміністратор
       </label>
-      <div class="col-lg-7 col-md-6">
+      <div class="col-md-6">
         <label class="checkbox-container">
           <input id="isAdmin" type="checkbox" formControlName="isAdmin">
           <span for="isAdmin" class="checkmark"></span>

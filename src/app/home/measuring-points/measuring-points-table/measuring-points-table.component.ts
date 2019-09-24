@@ -21,7 +21,7 @@ export class MeasuringPointsTableComponent extends TableContent<MeasuringPoint> 
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
   ) {
-    super(MeasuringPointsService, modalService, router, activatedRoute);
+    super(riversService, modalService, router, activatedRoute);
   }
 
   protected onComponentInit() {

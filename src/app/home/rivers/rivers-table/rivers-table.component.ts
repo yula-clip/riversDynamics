@@ -21,7 +21,7 @@ export class RiversTableComponent extends TableContent<River> {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
   ) {
-    super(RiversService, modalService, router, activatedRoute);
+    super(riversService, modalService, router, activatedRoute);
   }
 
   protected onComponentInit() {
