@@ -15,6 +15,14 @@ const homeRoutes: Routes = [
         loadChildren: './main-page/index#MainPageModule'
       },
       {
+        path: 'research',
+        loadChildren: './research/index#ResearchModule'
+      },
+      {
+        path: 'currentState',
+        loadChildren: './current-state/index#CurrentStateModule'
+      },
+      {
         path: 'rivers',
         data: { isAdmin: true },
         loadChildren: './rivers/index#RiversModule'

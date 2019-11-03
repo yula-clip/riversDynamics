@@ -31,26 +31,4 @@ export class HomeComponent implements OnInit {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
-
-  showConfirm() {
-    this.messageService.clear();
-    this.messageService.add(
-      {
-        key: 'riverWarn', sticky: true, severity: 'warn', summary: 'Зверніть увагу!',
-        detail: 'Рівень забрудняння на певній ділянці річки перевищує норму.'
-      }
-    );
-  }
-
-  onConfirm() {
-    this.messageService.clear('c');
-  }
-
-  onReject() {
-    this.messageService.clear('c');
-  }
-
-  clear() {
-    this.messageService.clear();
-  }
 }

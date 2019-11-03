@@ -103,11 +103,11 @@
         <legend class="col-form-label col-md-6 text-right require">Статус</legend>
         <div class="col-md-6 col-form-label">
           <label class="radiobutton-container">Забруднення
-            <input id="pollution" type="radio" [value]="false" formControlName="status" checked>
+            <input id="pollution" type="radio" [value]="0" formControlName="status" checked>
             <span for="pollution" class="checkmark"></span>
           </label>
           <label class="radiobutton-container">Очищення
-            <input id="clear" type="radio" [value]="true" formControlName="status">
+            <input id="clear" type="radio" [value]="1" formControlName="status">
             <span for="clear" class="checkmark"></span>
           </label>
           <div *ngIf="isFieldError('status')" class="invalid-feedback ">

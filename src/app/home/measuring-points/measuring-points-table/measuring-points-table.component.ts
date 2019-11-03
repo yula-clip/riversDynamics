@@ -26,9 +26,7 @@ export class MeasuringPointsTableComponent extends TableContent<MeasuringPoint> 
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    this.measuringPoints = [new MeasuringPoint(1, 'Точка виміру1'), new MeasuringPoint(2, 'Точка виміру2'),
-    new MeasuringPoint(3, 'Точка виміру3'), new MeasuringPoint(4, 'Точка виміру4')];
+    this.getItems();
   }
 
   public setItems(_measuringPoints: MeasuringPoint[]) {

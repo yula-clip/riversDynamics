@@ -8,6 +8,7 @@ import { RiverSection } from '../../../_models/river-section';
 import { RiverSectionsService } from '../../../_services/river-sections.service';
 import { River } from '../../../_models/river';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { RiversService } from 'src/app/_services/rivers.service';
 
 @Component({
   selector: 'app-river-sections-edit',
@@ -22,20 +23,20 @@ export class RiverSectionsEditComponent extends EditContent<RiverSection> {
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly messageService: MessageService,
-    private readonly modalService: BsModalService
+    private readonly modalService: BsModalService,
+    private readonly riversService: RiversService,
   ) {
     super(location, riverSectionsService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {
-    this.rivers = [new River(1, 'Прут'), new River(2, 'Дніпро'),
-    new River(3, 'Сірет'), new River(4, 'Дністер')];
+    this.riversService.list().subscribe((rivers: River[]) => this.rivers = rivers);
   }
 
   protected buildForm(): FormGroup {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
-      river: [null, [Validators.required]],
+      river_id: [null, [Validators.required]],
       diffuse: [null, [Validators.required]],
     });
   }

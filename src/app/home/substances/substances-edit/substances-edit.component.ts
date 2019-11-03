@@ -44,6 +44,5 @@ export class SubstancesEditComponent extends EditContent<Substance> {
 
   protected beforeSubmit(): void {
     console.log(this.editForm);
-
   }
 }

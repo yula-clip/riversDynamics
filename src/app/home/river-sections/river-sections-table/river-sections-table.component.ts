@@ -26,9 +26,7 @@ export class RiverSectionsTableComponent extends TableContent<RiverSection> {
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    this.riverSections = [new RiverSection(1, 'Ділянка Прут'), new RiverSection(2, 'Ділянка Дніпро'),
-    new RiverSection(3, 'Ділянка Сірет'), new RiverSection(4, 'Ділянка Дністер')];
+    this.getItems();
   }
 
   public setItems(_riverSections: RiverSection[]) {

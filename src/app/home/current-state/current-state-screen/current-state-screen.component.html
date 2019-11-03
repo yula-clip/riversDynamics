@@ -1,0 +1,61 @@
+<button type="button" pButton (click)="showConfirm()" label="Confirm" class="ui-button-warning"></button>
+
+<div class="py-3">
+  <h5>Поточний стан</h5>
+  <div class="pl-2">
+    <div class="edit-page">
+      <div class="form-group row">
+        <label for="river-name" class="col-md-6 col-form-label text-right require">Дата виміру:</label>
+        <label class="col-md-6  col-form-label">
+          03.07.2018
+        </label>
+      </div>
+      <div class="form-group row">
+        <label for="river-name" class="col-md-6 col-form-label text-right require">Назва річки</label>
+        <label class="col-md-6 col-form-label">
+          Прут
+        </label>
+      </div>
+      <div class="form-group row">
+        <label for="river-name" class="col-md-6 col-form-label text-right require">Субстанціїя</label>
+        <label class="col-md-6 col-form-label">
+          Азот амонійний
+        </label>
+      </div>
+      <div class="form-group row">
+        <label for="river-name" class="col-md-6 col-form-label text-right require">Ділянка річки</label>
+        <label class="col-md-6 col-form-label">
+          3453
+        </label>
+      </div>
+      <div class="form-group row">
+        <label for="river-name" class="col-md-6 col-form-label text-right require">Значення:</label>
+        <label class="col-md-6 col-form-label">
+          <div>5.2 мг N/дм3</div>
+          <div><span class="badge badge-danger">Допустиме значення: 2.6 мг N/дм3</span></div>
+        </label>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-primary border mr-2" type="button" (click)="cancel()">
+            Спрогнозувати очищення
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<p-toast position="top-right" key="riverWarn" (onClose)="onReject()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div style="text-align: center">
+      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+      <h3>{{message.summary}}</h3>
+      <p>{{message.detail}}</p>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn-primary" (click)="onConfirm()">Спрогнозувати очищення</button>
+    </div>
+  </ng-template>
+</p-toast>

@@ -9,7 +9,8 @@ import { River } from '../../../_models/river';
 import { MeasuringPoint } from '../../../_models';
 import { RiverSection } from '../../../_models/river-section';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { isNull } from 'util';
+import { RiverSectionsService } from 'src/app/_services/river-sections.service';
+import { RiversService } from 'src/app/_services/rivers.service';
 
 @Component({
   selector: 'app-measuring-points-edit',
@@ -22,30 +23,23 @@ export class MeasuringPointsEditComponent extends EditContent<MeasuringPoint> {
   public allRiverSections: RiverSection[];
   constructor(
     private readonly location: Location,
-    private readonly riversService: MeasuringPointsService,
+    private readonly measuringPointsService: MeasuringPointsService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly messageService: MessageService,
-    private readonly modalService: BsModalService
+    private readonly modalService: BsModalService,
+    private readonly riversService: RiversService,
+    private readonly riverSectionsService: RiverSectionsService,
   ) {
-    super(location, riversService, activatedRoute, messageService, modalService);
+    super(location, measuringPointsService, activatedRoute, messageService, modalService);
   }
 
   protected onComponentInit() {
-    this.rivers = [new River(1, 'Прут'), new River(2, 'Дніпро'),
-    new River(3, 'Сірет'), new River(4, 'Дністер')];
-
-    this.allRiverSections = [
-      { id: 1, name: 'Ділянка Прут1', river: new River(1, 'Прут'), diffuse: 5 },
-      { id: 1, name: 'Ділянка Прут2', river: new River(1, 'Прут'), diffuse: 5 },
-      { id: 2, name: 'Ділянка Дніпро1', river: new River(2, 'Дніпро'), diffuse: 5 },
-      { id: 2, name: 'Ділянка Дніпро2', river: new River(2, 'Дніпро'), diffuse: 5 },
-      { id: 2, name: 'Ділянка Дніпро3', river: new River(2, 'Дніпро'), diffuse: 5 },
-      { id: 3, name: 'Ділянка Сірет', river: new River(3, 'Сірет'), diffuse: 5 },
-      { id: 4, name: 'Ділянка Дністер1', river: new River(4, 'Дністер'), diffuse: 5 },
-      { id: 4, name: 'Ділянка Дністер2', river: new River(4, 'Дністер'), diffuse: 5 }
-    ];
-    this.riverSections = this.allRiverSections;
+    this.riversService.list().subscribe((rivers: River[]) => this.rivers = rivers);
+    this.riverSectionsService.list().subscribe((riverSections: RiverSection[]) => {
+      this.allRiverSections = riverSections;
+      this.setNewRiverSections();
+    });
   }
 
   protected buildForm(): FormGroup {
@@ -53,20 +47,22 @@ export class MeasuringPointsEditComponent extends EditContent<MeasuringPoint> {
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       x: [null, [Validators.required]],
       y: [null, [Validators.required]],
-      river: [null, [Validators.required]],
-      riverSection: [null, [Validators.required]]
+      river_id: [null, [Validators.required]],
+      river_section_id: [null, [Validators.required]]
     });
   }
 
   setNewRiverSections() {
-    const river: River = this.editForm.get('river').value;
+    const river_id: number = this.editForm.get('river_id').value;
 
-    if (!river.id || !river) {
+    if (!river_id) {
       this.riverSections = this.allRiverSections;
       return;
     }
+
     this.riverSections = this.allRiverSections
-      .filter((riverSection: RiverSection) => riverSection.river.id === river.id);
+      // tslint:disable-next-line:triple-equals
+      .filter((riverSection: RiverSection) => riverSection.river_id == river_id);
   }
 
   protected beforeSubmit(): void { }

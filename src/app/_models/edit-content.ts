@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/components/common/messageservice';
 import { faPencilAlt, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { BaseCRUDService } from '../_services/base-crud.service';
+import * as moment from 'moment';
 
 
 export abstract class EditContent<T extends AbstractEntity> implements OnInit {
@@ -86,6 +87,10 @@ export abstract class EditContent<T extends AbstractEntity> implements OnInit {
     this._service.getById(itemId).subscribe(
       (item: T) => {
         this.onEditScreenOpened(item);
+
+        if (item.date) {
+          item.date = moment(item.date).toDate();
+        }
         this.editForm.reset(item);
       },
       (errorMessage: string) => {

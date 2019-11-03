@@ -23,15 +23,15 @@
     <div class="form-group row">
       <label for="river-name" class="col-md-6 col-form-label text-right require">Річка</label>
       <div class="col-md-6">
-        <select class="form-control" formControlName="river">
+        <select class="form-control" formControlName="river_id">
           <option value="null">Виберіть річку</option>
-          <option *ngFor="let river of rivers" [ngValue]="river">{{river.name}}</option>
+          <option *ngFor="let river of rivers" [value]="river.id">{{river.name}}</option>
         </select>
-        <div *ngIf="isFieldError('river')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('river', 'required')">
+        <div *ngIf="isFieldError('river_id')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('river_id', 'required')">
             Обов'язкове поле
           </div>
-          <div *ngIf="getErrorParam('river', 'minlength') || getErrorParam('river', 'maxlength')">
+          <div *ngIf="getErrorParam('river_id', 'minlength') || getErrorParam('river_id', 'maxlength')">
             Поле повинно містити більше 2 символів, та менше 32
           </div>
         </div>

@@ -47,16 +47,16 @@
     <div class="form-group row">
       <label for="river-name" class="col-md-6 col-form-label text-right require">Річка</label>
       <div class="col-md-6">
-        <select class="form-control" formControlName="river"
+        <select class="form-control" formControlName="river_id"
         (change)="setNewRiverSections()">
           <option [value]="null">Виберіть річку</option>
-          <option *ngFor="let river of rivers" [ngValue]="river">{{river.name}}</option>
+          <option *ngFor="let river of rivers" [value]="river.id">{{river.name}}</option>
         </select>
-        <div *ngIf="isFieldError('river')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('river', 'required')">
+        <div *ngIf="isFieldError('river_id')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('river_id', 'required')">
             Обов'язкове поле
           </div>
-          <div *ngIf="getErrorParam('river', 'minlength') || getErrorParam('river', 'maxlength')">
+          <div *ngIf="getErrorParam('river_id', 'minlength') || getErrorParam('river_id', 'maxlength')">
             Поле повинно містити більше 2 символів, та менше 32
           </div>
         </div>
@@ -65,15 +65,15 @@
     <div class="form-group row">
       <label for="riverSection-name" class="col-md-6 col-form-label text-right require">Ділянка річки</label>
       <div class="col-md-6">
-        <select class="form-control" formControlName="riverSection">
-          <option value="null">Виберіть ділянку річки</option>
-          <option *ngFor="let riverSection of riverSections" [ngValue]="riverSection">{{riverSection.name}}</option>
+        <select class="form-control" formControlName="river_section_id">
+          <option [value]="null">Виберіть ділянку річки</option>
+          <option *ngFor="let riverSection of riverSections" [value]="riverSection.id">{{riverSection.name}}</option>
         </select>
-        <div *ngIf="isFieldError('riverSection')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('riverSection', 'required')">
+        <div *ngIf="isFieldError('river_section_id')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('river_section_id', 'required')">
             Обов'язкове поле
           </div>
-          <div *ngIf="getErrorParam('riverSection', 'minlength') || getErrorParam('riverSection', 'maxlength')">
+          <div *ngIf="getErrorParam('river_section_id', 'minlength') || getErrorParam('river_section_id', 'maxlength')">
             Поле повинно містити більше 2 символів, та менше 32
           </div>
         </div>

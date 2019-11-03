@@ -26,9 +26,7 @@ export class RiversTableComponent extends TableContent<River> {
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    this.rivers = [new River(1, 'Прут'), new River(2, 'Дніпро'),
-    new River(3, 'Сірет'), new River(4, 'Дністер')];
+    this.getItems();
   }
 
   public setItems(_rivers: River[]) {

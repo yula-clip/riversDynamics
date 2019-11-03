@@ -26,9 +26,7 @@ export class SubstancesTableComponent extends TableContent<Substance> {
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    this.substances = [new Substance(1, 'Substance 1'), new Substance(2, 'Substance 2'),
-    new Substance(3, 'Substance 3'), new Substance(4, 'Substance 4')];
+    this.getItems();
   }
 
   public setItems(_substances: Substance[]) {

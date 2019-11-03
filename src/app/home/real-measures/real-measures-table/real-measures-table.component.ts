@@ -29,15 +29,7 @@ export class RealMeasuresTableComponent extends TableContent<RealMeasure> {
 
   protected onComponentInit() {
     library.add(faPlus);
-    // this.getItems();
-    const realMeasure = {
-      id: 1,
-      date: new Date(),
-      measuringPoints: [new MeasuringPoint(1, 'Point')],
-      substance: new Substance(1, 'Substance'),
-      value: 'Value measure'
-    };
-    this.realMeasures = [realMeasure, realMeasure, realMeasure];
+    this.getItems();
   }
 
   public setItems(_realMeasures: RealMeasure[]) {
