@@ -7,6 +7,7 @@ import { ToastModule } from 'primeng/toast';
 import { CurrentStateComponent } from './current-state.component';
 import { CurrentStateScreenComponent } from './current-state-screen/current-state-screen.component';
 import { CurrentStateRoutingModule } from './current-state-routing.module';
+import { GMapModule } from 'primeng/gmap';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CurrentStateRoutingModule } from './current-state-routing.module';
     FontAwesomeModule,
     FormsModule,
     ToastModule,
-    CurrentStateRoutingModule
+    CurrentStateRoutingModule,
+    GMapModule
   ],
   declarations: [
     CurrentStateComponent,
