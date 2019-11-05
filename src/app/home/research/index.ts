@@ -7,20 +7,22 @@ import { ToastModule } from 'primeng/toast';
 import { ResearchComponent } from './research.component';
 import { ResearchScreenComponent } from './research-screen/research-screen.component';
 import { ResearchRoutingModule } from './research-routing.module';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TableModule,
-        ReactiveFormsModule,
-        FontAwesomeModule,
-        FormsModule,
-        ToastModule,
-        ResearchRoutingModule
-    ],
-    declarations: [
-        ResearchComponent,
-        ResearchScreenComponent
-    ]
+  imports: [
+    CommonModule,
+    TableModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    FormsModule,
+    ToastModule,
+    ResearchRoutingModule,
+    ChartModule
+  ],
+  declarations: [
+    ResearchComponent,
+    ResearchScreenComponent
+  ]
 })
 export class ResearchModule { }
