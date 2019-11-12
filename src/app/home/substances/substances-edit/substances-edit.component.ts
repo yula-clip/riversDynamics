@@ -33,12 +33,12 @@ export class SubstancesEditComponent extends EditContent<Substance> {
     return this.formBuilder.group({
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       latinName: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
-      coefficient1: [null, [Validators.required]],
-      coefficient2: [null, [Validators.required]],
-      coefficient3: [null, [Validators.required]],
-      unitsOfMeasurement: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
-      validValues: [null, [Validators.required]],
-      status: [false, [Validators.required]],
+      k1: [null, [Validators.required]],
+      k2: [null, [Validators.required]],
+      k3: [null, [Validators.required]],
+      unitsMeasure: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
+      validValue: [null, [Validators.required]],
+      isCleaning: [false, [Validators.required]],
     });
   }
 

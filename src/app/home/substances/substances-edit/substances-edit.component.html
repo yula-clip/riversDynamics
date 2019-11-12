@@ -36,63 +36,63 @@
       </div>
     </div>
     <div class="form-group row">
-        <label for="coefficient1" class="col-md-6 col-form-label text-right require">K1</label>
+        <label for="k1" class="col-md-6 col-form-label text-right require">K1</label>
         <div class="col-md-6">
-          <input id="coefficient1" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient1')}"
-            formControlName="coefficient1" autofocus />
-          <div *ngIf="isFieldError('coefficient1')" class="invalid-feedback ">
-            <div *ngIf="getErrorParam('coefficient1', 'required')">
+          <input id="k1" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('k1')}"
+            formControlName="k1" autofocus />
+          <div *ngIf="isFieldError('k1')" class="invalid-feedback ">
+            <div *ngIf="getErrorParam('k1', 'required')">
               Обов'язкове поле
             </div>
           </div>
         </div>
     </div>
     <div class="form-group row">
-      <label for="coefficient2" class="col-md-6 col-form-label text-right require">K2</label>
+      <label for="k2" class="col-md-6 col-form-label text-right require">K2</label>
       <div class="col-md-6">
-        <input id="coefficient2" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient2')}"
-          formControlName="coefficient2" autofocus />
-        <div *ngIf="isFieldError('coefficient2')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('coefficient2', 'required')">
+        <input id="k2" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('k2')}"
+          formControlName="k2" autofocus />
+        <div *ngIf="isFieldError('k2')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('k2', 'required')">
             Обов'язкове поле
           </div>
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="coefficient3" class="col-md-6 col-form-label text-right require">K3</label>
+      <label for="k3" class="col-md-6 col-form-label text-right require">K3</label>
       <div class="col-md-6">
-        <input id="coefficient3" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('coefficient3')}"
-          formControlName="coefficient3" autofocus />
-        <div *ngIf="isFieldError('coefficient3')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('coefficient3', 'required')">
+        <input id="k3" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('k3')}"
+          formControlName="k3" autofocus />
+        <div *ngIf="isFieldError('k3')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('k3', 'required')">
             Обов'язкове поле
           </div>
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="unitsOfMeasurement" class="col-md-6 col-form-label text-right require">Одиниці вимірювання</label>
+      <label for="unitsMeasure" class="col-md-6 col-form-label text-right require">Одиниці вимірювання</label>
       <div class="col-md-6">
-        <input id="unitsOfMeasurement" class="form-control" [ngClass]="{'is-invalid': isFieldError('unitsOfMeasurement')}" type="text"
-          formControlName="unitsOfMeasurement" autofocus />
-        <div *ngIf="isFieldError('unitsOfMeasurement')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('unitsOfMeasurement', 'required')">
+        <input id="unitsMeasure" class="form-control" [ngClass]="{'is-invalid': isFieldError('unitsMeasure')}" type="text"
+          formControlName="unitsMeasure" autofocus />
+        <div *ngIf="isFieldError('unitsMeasure')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('unitsMeasure', 'required')">
             Обов'язкове поле
           </div>
-          <div *ngIf="getErrorParam('unitsOfMeasurement', 'minlength') || getErrorParam('unitsOfMeasurement', 'maxlength')">
+          <div *ngIf="getErrorParam('unitsMeasure', 'minlength') || getErrorParam('unitsMeasure', 'maxlength')">
             Поле повинно містити більше 2 символів, та менше 32
           </div>
         </div>
       </div>
     </div>
     <div class="form-group row">
-      <label for="validValues" class="col-md-6 col-form-label text-right require">Допустиме значення в одиниці вимірювання</label>
+      <label for="validValue" class="col-md-6 col-form-label text-right require">Допустиме значення в одиниці вимірювання</label>
       <div class="col-md-6">
-        <input id="validValues" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('validValues')}"
-          formControlName="validValues" autofocus />
-        <div *ngIf="isFieldError('validValues')" class="invalid-feedback ">
-          <div *ngIf="getErrorParam('validValues', 'required')">
+        <input id="validValue" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('validValue')}"
+          formControlName="validValue" autofocus />
+        <div *ngIf="isFieldError('validValue')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('validValue', 'required')">
             Обов'язкове поле
           </div>
         </div>
@@ -103,14 +103,14 @@
         <legend class="col-form-label col-md-6 text-right require">Статус</legend>
         <div class="col-md-6 col-form-label">
           <label class="radiobutton-container">Забруднення
-            <input id="pollution" type="radio" [value]="0" formControlName="status" checked>
+            <input id="pollution" type="radio" [value]="0" formControlName="isCleaning" checked>
             <span for="pollution" class="checkmark"></span>
           </label>
           <label class="radiobutton-container">Очищення
-            <input id="clear" type="radio" [value]="1" formControlName="status">
+            <input id="clear" type="radio" [value]="1" formControlName="isCleaning">
             <span for="clear" class="checkmark"></span>
           </label>
-          <div *ngIf="isFieldError('status')" class="invalid-feedback ">
+          <div *ngIf="isFieldError('isCleaning')" class="invalid-feedback ">
             Обов'язкове поле
           </div>
         </div>

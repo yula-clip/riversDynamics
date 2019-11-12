@@ -6,51 +6,58 @@
 <div class="edit-page">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-        <label for="date" class="col-md-6 col-form-label text-right require">Дата виміру</label>
-        <div class="col-md-6">
-            <p-calendar id="date" formControlName="date" [showTime]="true" [ngClass]="{'is-invalid': isFieldError('date')}"></p-calendar>
-          <div *ngIf="isFieldError('date')" class="invalid-feedback ">
-            <div *ngIf="getErrorParam('date', 'required')">
-              Обов'язкове поле
-            </div>
+      <label for="date" class="col-md-6 col-form-label text-right require">Дата виміру</label>
+      <div class="col-md-6">
+        <p-calendar id="date" formControlName="date" [showTime]="true" [ngClass]="{'is-invalid': isFieldError('date')}">
+        </p-calendar>
+        <div *ngIf="isFieldError('date')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('date', 'required')">
+            Обов'язкове поле
           </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="substance" class="col-md-6 col-form-label text-right require">Речовина</label>
-        <div class="col-md-6">
-          <select class="form-control" formControlName="substance" [compareWith]="compareSubstances">
-            <option value="null">Виберіть речовину</option>
-            <option *ngFor="let substance of substances" [ngValue]="substance">{{substance.name}}</option>
-          </select>
-          <div *ngIf="isFieldError('substance')" class="invalid-feedback ">
-            <div *ngIf="getErrorParam('substance', 'required')">
-              Обов'язкове поле
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="value" class="col-md-6 col-form-label text-right require">Значення виміру</label>
-        <div class="col-md-6">
-          <input id="value" type="text" class="form-control" [ngClass]="{'is-invalid': isFieldError('value')}"
-            formControlName="value" autofocus />
-          <div *ngIf="isFieldError('value')" class="invalid-feedback ">
-            <div *ngIf="getErrorParam('value', 'required')">
-              Обов'язкове поле
-            </div>
-          </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label class="col-lg-4 col-md-6 col-form-label text-right require">Точки виміру</label>
-        <div class="col-lg-7 col-md-6">
-          <button id="addMeasuringPoints" class="btn btn-outline-secondary table-edit-btn" type="button" (click)="openModal(template)"
-                  [ngClass]="{'is-invalid': isFieldError('measuring_points')}">
-            <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
-          </button>
         </div>
       </div>
+    </div>
+    <div class="form-group row">
+      <label for="substance" class="col-md-6 col-form-label text-right require">Речовина</label>
+      <div class="col-md-6">
+        <select class="form-control" formControlName="substance" [compareWith]="compareById">
+          <option value="null">Виберіть речовину</option>
+          <option *ngFor="let substance of substances" [ngValue]="substance">{{substance.name}}</option>
+        </select>
+        <div *ngIf="isFieldError('substance')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('substance', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="value" class="col-md-6 col-form-label text-right require">Значення виміру</label>
+      <div class="col-md-6">
+        <input id="value" type="text" class="form-control" [ngClass]="{'is-invalid': isFieldError('value')}"
+          formControlName="value" autofocus />
+        <div *ngIf="isFieldError('value')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('value', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="measuring_point" class="col-md-6 col-form-label text-right require">Точки виміру</label>
+      <div class="col-md-6">
+        <select class="form-control" formControlName="measuring_point" [compareWith]="compareById">
+          <option value="null">Виберіть точку</option>
+          <option *ngFor="let measuringPoint of measuringPoints" [ngValue]="measuringPoint">{{measuringPoint.name}}
+          </option>
+        </select>
+        <div *ngIf="isFieldError('measuring_point')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('measuring_point', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="form-group row">
       <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">
@@ -63,22 +70,3 @@
     </div>
   </form>
 </div>
-
-<ng-template #template>
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">
-            Точки виміру
-        </h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()" id="closeButton">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body text-break" [formGroup]="editForm">
-          <app-pick-list formControlName="measuring_points" [sourceList]="sourceMeasuringPoints" [sourceListHeader]="'Всі точки виміру'"
-          [targetListHeader]="'Вибрані точки виміру'"></app-pick-list>
-      </div>
-      <div class="modal-footer">
-          <button type="button" class="btn border" (click)="closeModal()"
-            id="closeInfoButton">Закрити</button>
-      </div>
-  </ng-template>

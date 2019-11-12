@@ -24,9 +24,9 @@
       </li>
       <li class="nav-item" *ngIf="showForAdmin()">
         <accordion>
-          <accordion-group [isOpen]="isOpenedAdministration(rivers, riverSections, substances, measuringPoints, realMeasures, spentCleaningSubstances, users)">
+          <accordion-group [isOpen]="isOpenedAdministration(rivers, riverSections, substances, measuringPoints, realMeasures, users)">
             <div id="heading-accordion-administration" class="rounded"
-              [ngClass]="{'active-accordion-heading': isOpenedAdministration(rivers, riverSections, substances, measuringPoints, realMeasures, spentCleaningSubstances, users)}" accordion-heading>
+              [ngClass]="{'active-accordion-heading': isOpenedAdministration(rivers, riverSections, substances, measuringPoints, realMeasures, users)}" accordion-heading>
               <a class="pl-2">
                 <span>Адміністрування</span>
                 <fa-icon [icon]="['fas', 'angle-down']"></fa-icon>
@@ -60,12 +60,6 @@
               id="substancesNavLink">
               <div class="rounded div-ml-4 pl-2">
                 <span>Речовини</span>
-              </div>
-            </a>
-            <a class="nav-link" routerLink="/spentCleaningSubstances" routerLinkActive="active" #spentCleaningSubstances="routerLinkActive"
-              id="spentCleaningSubstancesNavLink">
-              <div class="rounded div-ml-4 pl-2">
-                <span>Витрачені речовини очистки</span>
               </div>
             </a>
             <a class="nav-link" routerLink="/users" routerLinkActive="active"

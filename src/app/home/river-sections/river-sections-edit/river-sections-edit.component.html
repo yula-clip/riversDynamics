@@ -3,7 +3,7 @@
   <h5 *ngIf="isCreate">Створення ділянки річки</h5>
   <h5 *ngIf="!isCreate">Редагування ділянки річки</h5>
 </div>
-<div class="edit-page">
+<div class="">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
       <label for="river-section-name" class="col-md-6 col-form-label text-right require">Назва ділянки річки</label>
@@ -38,17 +38,29 @@
       </div>
     </div>
     <div class="form-group row">
-        <label for="diffuse" class="col-md-6 col-form-label text-right require">Дифузність</label>
-        <div class="col-md-6">
-          <input id="diffuse" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('diffuse')}"
-            formControlName="diffuse" autofocus />
-          <div *ngIf="isFieldError('diffuse')" class="invalid-feedback ">
-            <div *ngIf="getErrorParam('diffuse', 'required')">
-              Обов'язкове поле
-            </div>
+      <label for="diffuse" class="col-md-6 col-form-label text-right require">Дифузність</label>
+      <div class="col-md-6">
+        <input id="diffuse" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('diffuse')}"
+          formControlName="diffuse" autofocus />
+        <div *ngIf="isFieldError('diffuse')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('diffuse', 'required')">
+            Обов'язкове поле
           </div>
         </div>
       </div>
+    </div>
+    <div class="form-group row">
+      <label for="velosity" class="col-md-6 col-form-label text-right require">Швидкісний коефіцієнт</label>
+      <div class="col-md-6">
+        <input id="velosity" type="number" class="form-control" [ngClass]="{'is-invalid': isFieldError('velosity')}"
+          formControlName="velosity" autofocus />
+        <div *ngIf="isFieldError('velosity')" class="invalid-feedback ">
+          <div *ngIf="getErrorParam('velosity', 'required')">
+            Обов'язкове поле
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="form-group row">
       <div class="col-md-12 text-right">
         <button class="btn btn-default border mr-2" type="button" (click)="cancel()">

@@ -38,6 +38,7 @@ export class RiverSectionsEditComponent extends EditContent<RiverSection> {
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       river_id: [null, [Validators.required]],
       diffuse: [null, [Validators.required]],
+      velosity: [null, [Validators.required]],
     });
   }
 

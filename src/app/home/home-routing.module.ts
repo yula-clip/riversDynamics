@@ -48,11 +48,6 @@ const homeRoutes: Routes = [
         loadChildren: './real-measures/index#RealMeasuresModule'
       },
       {
-        path: 'spentCleaningSubstances',
-        data: { isAdmin: true },
-        loadChildren: './spent-cleaning-substances/index#SpentCleaningSubstancesModule'
-      },
-      {
         path: 'users',
         data: { isAdmin: true },
         loadChildren: './users/index#UsersModule'

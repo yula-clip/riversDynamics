@@ -3,6 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Location } from '@angular/common';
+import { River } from '../../../_models/river';
+import { MeasuringPoint } from '../../../_models';
+import { RiverSection } from '../../../_models/river-section';
+import { RiversService } from 'src/app/_services/rivers.service';
+import { RiverSectionsService } from 'src/app/_services/river-sections.service';
+import { MeasuringPointsService } from 'src/app/_services/measuring-points.service';
 
 @Component({
   selector: 'app-research-screen',
@@ -11,6 +17,14 @@ import { Location } from '@angular/common';
 })
 export class ResearchScreenComponent {
   data: any;
+
+  rivers: River[];
+  riverSections: RiverSection[];
+  measuringPoints: MeasuringPoint[];
+  allMeasuringPoints: MeasuringPoint[];
+  allRiverSections: RiverSection[];
+  selectRiverId: number;
+  selectRiverIdSectionId: number;
 
   h: number[];
   x: number[][];
@@ -31,12 +45,31 @@ export class ResearchScreenComponent {
   k2: number;
   k3: number;
   l: number;
+
+  datasets: any[];
   constructor(
     private readonly location: Location,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
-    private readonly messageService: MessageService
+    private readonly messageService: MessageService,
+    private readonly riversService: RiversService,
+    private readonly riverSectionsService: RiverSectionsService,
+    private readonly measuringPointsService: MeasuringPointsService
   ) {
+    this.riversService.list().subscribe((rivers: River[]) => this.rivers = rivers);
+    this.riverSectionsService.list().subscribe((riverSections: RiverSection[]) => {
+      this.allRiverSections = riverSections;
+      this.setNewRiverSections();
+    });
+
+    this.measuringPointsService.list().subscribe((measuringPoints: MeasuringPoint[]) => {
+      this.allMeasuringPoints = measuringPoints;
+      this.setNewMeasuringPoints();
+    });
+
+
+
+    this.datasets = [];
 
     this.h = [];
     this.x = [];
@@ -115,14 +148,13 @@ export class ResearchScreenComponent {
       }
     }
     // графік
-    const datasets = [];
     for (let m = 0; m < this.M; m++) {
       const data = [];
       for (let n = 0; n <= this.N; n++) {
-        data.push(this.x[n][m]);
+        data.push(this.x[n][m].toFixed(2));
       }
 
-      datasets.push({
+      this.datasets.push({
         label: 'x' + m,
         data: data,
         fill: true,
@@ -131,8 +163,45 @@ export class ResearchScreenComponent {
     }
     this.data = {
       labels: labels,
-      datasets: datasets
+      datasets: this.datasets
     };
-    // console.log(datasets);
+
+    // console.log(this.datasets);
+  }
+
+
+  forecastCleaning() {
+    console.log('forecastCleaning!');
+  }
+
+  onChangeRiverSections(event: any) {
+    this.selectRiverIdSectionId = event.target.value;
+    this.setNewMeasuringPoints(this.selectRiverIdSectionId);
+  }
+
+  setNewRiverSections(event?: any) {
+    this.selectRiverId = event ? event.target.value : null;
+
+    if (!this.selectRiverId) {
+      this.riverSections = this.allRiverSections;
+      return;
+    }
+
+    this.riverSections = this.allRiverSections
+      // tslint:disable-next-line:triple-equals
+      .filter((riverSection: RiverSection) => riverSection.river_id == this.selectRiverId);
+  }
+
+  setNewMeasuringPoints(sectionid?: number) {
+    if (!this.selectRiverIdSectionId) {
+      this.measuringPoints = this.allMeasuringPoints;
+      return;
+    }
+    const id = sectionid ? sectionid : this.selectRiverIdSectionId;
+
+    this.measuringPoints = this.allMeasuringPoints
+      // tslint:disable-next-line:triple-equals
+      .filter((measuringPoint: MeasuringPoint) => measuringPoint.river_section_id == id);
+    console.log(this.measuringPoints);
   }
 }

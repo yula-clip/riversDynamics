@@ -5,10 +5,10 @@ export class Substance extends AbstractEntity {
     super(id, name);
   }
   latinName: string;
-  coefficient1: number;
-  coefficient2: number;
-  coefficient3: number;
-  unitsOfMeasurement: string;
-  validValues: number;
-  status: boolean;
+  k1: number;
+  k2: number;
+  k3: number;
+  unitsMeasure: string;
+  validValue: number;
+  isCleaning: boolean;
 }

@@ -4,9 +4,10 @@ import { AbstractEntity } from './abstract-entity';
 
 export class RealMeasure extends AbstractEntity {
   date?: Date;
-  measuring_points: MeasuringPoint[];
+  measuring_point: MeasuringPoint;
+  measPointId: number;
   substance: Substance;
-  substance_id: number;
+  substId: number;
   value: string;
   constructor(id: number) {
     super(id);
