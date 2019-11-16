@@ -30,7 +30,7 @@ export abstract class BaseCRUDService<T extends AbstractEntity> {
       return this._httpClient.delete(`${this.generateLinkWithId(id)}`);
   }
 
-  private generateLinkWithId(id: number): string {
+  protected generateLinkWithId(id: number): string {
     return `${this.generateLink()}/${id}`;
   }
 }

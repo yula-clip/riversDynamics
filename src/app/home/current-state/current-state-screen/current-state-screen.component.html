@@ -1,80 +1,75 @@
 <div class="py-3">
   <h5>Поточний стан</h5>
   <div class="pl-2">
-    <div >
-      <button type="button" pButton (click)="showConfirm()" label="Confirm" class="ui-button-warning"></button>
+    <div class="form-group row">
+      <label for="river-name" class="col-md-3 col-form-label text-right require">Річка</label>
+      <div class="col-md-3">
+        <select class="form-control" (change)="setNewRiverSections($event)">
+          <option [value]="null">Виберіть річку</option>
+          <option *ngFor="let river of rivers" [value]="river.id">{{river.name}}</option>
+        </select>
+      </div>
+      <label for="riverSection-name" class="col-md-3 col-form-label text-right require">Ділянка річки</label>
+      <div class="col-md-3">
+        <select class="form-control" (change)="onChangeRiverSections($event)">
+          <option [value]="null">Виберіть ділянку річки</option>
+          <option *ngFor="let riverSection of riverSections" [value]="riverSection.id">{{riverSection.name}}</option>
+        </select>
+      </div>
+    </div>
 
+    <ng-container *ngIf="measures && measures.length">
       <div class="form-group row">
-        <label for="river-name" class="col-md-3 col-form-label text-right require">Річка</label>
-        <div class="col-md-3">
-          <select class="form-control" (change)="setNewRiverSections($event)">
-            <option [value]="null">Виберіть річку</option>
-            <option *ngFor="let river of rivers" [value]="river.id">{{river.name}}</option>
-          </select>
+        <p-gmap class="col-md-6" [options]="options" (onMapReady)="setMap($event)" [overlays]="overlays"
+          [style]="{'height':'250px'}">
+        </p-gmap>
+        <div class="col-md-6">
+          <label for="river-name" class="col col-form-label">Дата виміру:</label>
+          <label class="col col-form-label">
+            {{measures[0].date}}
+          </label>
         </div>
-        <label for="riverSection-name" class="col-md-3 col-form-label text-right require">Ділянка річки</label>
-        <div class="col-md-3">
-          <select class="form-control" (change)="onChangeRiverSections($event)">
-            <option [value]="null">Виберіть ділянку річки</option>
-            <option *ngFor="let riverSection of riverSections" [value]="riverSection.id">{{riverSection.name}}</option>
-          </select>
-        </div>
       </div>
 
-      <p-gmap [options]="options" (onMapReady)="setMap($event)" [overlays]="overlays" [style]="{'width':'50%','height':'250px'}"></p-gmap>
+      <p-table [value]="measures" class="mb">
+        <ng-template pTemplate="header">
+          <tr>
+            <th id="th-table">
+              Точка
+            </th>
+            <th id="th-table">
+              Субстанціїя
+            </th>
+            <th id="th-table">
+              Значення
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-measure>
+          <tr id="tr-table">
+            <td>
+              {{measure.measuring_point.name}}
+            </td>
+            <td>
+              {{measure.substance.name}}
+            </td>
+            <td>
+              <div>{{measure.value}}</div>
+              <div *ngIf="isInvalidValue(measure.value, measure.substance.validValue)"><span
+                  class="badge badge-danger">Допустиме значення: {{ measure.substance.validValue }}
+                  {{measure.substance.unitsMeasure}}</span></div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
 
-      <div class="form-group row">
-        <label for="river-name" class="col-md-6 col-form-label text-right require">Дата виміру:</label>
-        <label class="col-md-6  col-form-label">
-          03.07.2018
-        </label>
-      </div>
-      <div class="form-group row">
-        <label for="river-name" class="col-md-6 col-form-label text-right require">Назва річки</label>
-        <label class="col-md-6 col-form-label">
-          Прут
-        </label>
-      </div>
-      <div class="form-group row">
-        <label for="river-name" class="col-md-6 col-form-label text-right require">Субстанціїя</label>
-        <label class="col-md-6 col-form-label">
-          Азот амонійний
-        </label>
-      </div>
-      <div class="form-group row">
-        <label for="river-name" class="col-md-6 col-form-label text-right require">Ділянка річки</label>
-        <label class="col-md-6 col-form-label">
-          3453
-        </label>
-      </div>
-      <div class="form-group row">
-        <label for="river-name" class="col-md-6 col-form-label text-right require">Значення:</label>
-        <label class="col-md-6 col-form-label">
-          <div>5.2 мг N/дм3</div>
-          <div><span class="badge badge-danger">Допустиме значення: 2.6 мг N/дм3</span></div>
-        </label>
-      </div>
-      <div class="form-group row">
+      <div class="form-group row mt-3">
         <div class="col-md-12 text-right">
           <button class="btn btn-primary border mr-2" type="button" (click)="cancel()">
             Спрогнозувати очищення
           </button>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
-
-
-<p-toast position="top-right" key="riverWarn" (onClose)="onReject()" [baseZIndex]="5000">
-  <ng-template let-message pTemplate="message">
-    <div style="text-align: center">
-      <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
-      <h3>{{message.summary}}</h3>
-      <p>{{message.detail}}</p>
-    </div>
-    <div class="d-flex justify-content-center">
-      <button type="button" class="btn btn-primary" (click)="onConfirm()">Спрогнозувати очищення</button>
-    </div>
-  </ng-template>
-</p-toast>

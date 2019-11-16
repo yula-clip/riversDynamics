@@ -92,6 +92,9 @@ export class ResearchScreenComponent {
     this.M = this.x00.length;
 
     const labels = [];
+
+    const substanceValidValue = 5;
+
     for (let n = 0; n <= this.N; n = n + this.dh) {
       labels.push(n);
     }
@@ -110,24 +113,18 @@ export class ResearchScreenComponent {
       this.x[0][i] = this.x0[i];
     }
 
-    // Якщо l=1
-    for (let n = 0; n <= this.N; n++) {
-      this.G_l[n] = -this.k1 / this.D;
-    }
-
-    // Якщо l=2
-    if (this.l === 2) {
-      for (let n = 0; n <= this.N; n++) {
-        this.G_l[n] = -(this.k2 / this.D) * (1 - Math.exp(-this.k1 * n));
-      }
-    } else if (this.l === 3) { // Якщо l=3
-      for (let n = 0; n <= this.N; n++) {
-        this.G_l[n] = -(this.k3 / this.D) * (1 - Math.exp(-this.k2 * (1 - Math.exp(-this.k1 * n)) * n));
-      }
-    }
 
     // Розраховується стан якості води в кожній точці в 1й момент часу
     for (let m = 0; m < this.M; m++) {
+      if (this.l === 1) { // Якщо l=1
+        this.G_l[1] = -this.k1 / this.D;
+      }
+      if (this.l === 2) { // Якщо l=2
+        this.G_l[1] = -(this.k2 / this.D) * (1 - Math.exp(-this.k1 * 1));
+      }
+      if (this.l === 3) { // Якщо l=3
+        this.G_l[1] = -(this.k3 / this.D) * (1 - Math.exp(-this.k2 * (1 - Math.exp(-this.k1 * 1)) * 1));
+      }
       this.h[1] = Math.sqrt(this.dh);
       this.Kvgl[1][m] = 2 * this.h[0] + this.h[0] * (this.h[0] + this.h[1]) * this.V / this.D -
         this.h[0] * this.h[1] * (this.h[0] + this.h[1]) * this.G_l[1];
@@ -136,8 +133,21 @@ export class ResearchScreenComponent {
       this.x[1][m] = this.K1l[1][m] * this.x[0][m] - this.K2l[1][m] * this.x1[m];
     }
     // Розраховується стан якості води в кожній точці в n-й момент часу
+    const arrayN: number[] = [];
     for (let m = 0; m < this.M; m++) {
-      for (let n = 2; n <= this.N; n++) {
+      let n = 1;
+      while (this.x[n][m] >= substanceValidValue) {
+        n++;
+        if (this.l === 1) { // Якщо l=1
+          this.G_l[n] = -this.k1 / this.D;
+        }
+        if (this.l === 2) { // Якщо l=2
+          this.G_l[n] = -(this.k2 / this.D) * (1 - Math.exp(-this.k1 * n));
+        }
+        if (this.l === 3) { // Якщо l=3
+          this.G_l[n] = -(this.k3 / this.D) * (1 - Math.exp(-this.k2 * (1 - Math.exp(-this.k1 * n)) * n));
+        }
+
         this.h[n] = Math.sqrt(n * this.dh);
         this.Kvgl[n][m] = 2 * this.h[n - 1] + this.h[n - 1] * (this.h[n - 1] + this.h[n]) * this.V / this.D -
           this.h[n - 1] * this.h[n] * (this.h[n - 1] + this.h[n]) * this.G_l[n];
@@ -146,12 +156,18 @@ export class ResearchScreenComponent {
         this.K2l[n][m] = 2 * this.h[n] / this.Kvgl[n][m];
         this.x[n][m] = this.K1l[n][m] * this.x[n - 1][m] - this.K2l[n][m] * this.x[n - 2][m];
       }
+      arrayN.push(n);
     }
+    console.log(this.x);
+
+    this.N = Math.max.apply(null, arrayN);
     // графік
     for (let m = 0; m < this.M; m++) {
       const data = [];
       for (let n = 0; n <= this.N; n++) {
-        data.push(this.x[n][m].toFixed(2));
+        if (this.x[n][m]) {
+          data.push(this.x[n][m].toFixed(2));
+        }
       }
 
       this.datasets.push({
@@ -165,8 +181,6 @@ export class ResearchScreenComponent {
       labels: labels,
       datasets: this.datasets
     };
-
-    // console.log(this.datasets);
   }
 
 
