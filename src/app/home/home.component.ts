@@ -16,8 +16,7 @@ import { RealMeasure } from '../_models';
 
 export class HomeComponent implements OnInit {
   currentUserName: string;
-  riverId: number;
-  sectionId: number;
+  measures: any[];
 
   constructor(
     private readonly router: Router,
@@ -34,9 +33,10 @@ export class HomeComponent implements OnInit {
   }
 
   getPollutedSectionMessages() {
-    // this.realMeasuresService.getPollutedSection().subscribe((measures: RealMeasure[]) => {
-      // console.log(measures);
-    // });
+    this.realMeasuresService.getPollutedSection().subscribe((measures: RealMeasure[]) => {
+      this.measures = measures;
+      console.log(measures);
+    });
   }
 
   logout() {
@@ -49,17 +49,14 @@ export class HomeComponent implements OnInit {
     this.messageService.add(
       {
         key: `riverWarn`, sticky: true, severity: 'warn', summary: 'Зверніть увагу!',
-        detail: 'Рівень забрудняння на певній ділянці річки перевищує норму.'
+        detail: 'Рівень забрудняння на певних ділянка перевищує норму.'
       }
     );
   }
 
-  onConfirm() {
-    this.messageService.clear('c');
-  }
-
-  onReject() {
-    this.messageService.clear('c');
+  onConfirm(riverId: number, sectionId: number) {
+    this.clear();
+    console.log(riverId, sectionId);
   }
 
   clear() {
