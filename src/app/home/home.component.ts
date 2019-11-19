@@ -34,17 +34,9 @@ export class HomeComponent implements OnInit {
   }
 
   getPollutedSectionMessages() {
-    this.realMeasuresService.getPollutedSection().subscribe((measures: RealMeasure[]) => {
-      const result = measures.reduce(function (r, a) {
-        r[a.substId] = r[a.substId] || [];
-        r[a.substId].push(a);
-        return r;
-      }, Object.create(null));
-      console.log(result);
-
-      // measures.forEach((measure: RealMeasure) => {
-      // });
-    });
+    // this.realMeasuresService.getPollutedSection().subscribe((measures: RealMeasure[]) => {
+      // console.log(measures);
+    // });
   }
 
   logout() {

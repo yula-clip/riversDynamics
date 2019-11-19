@@ -8,7 +8,7 @@ import { MeasuringPoint } from '../../../_models';
 import { RiverSection } from '../../../_models/river-section';
 import { RiversService } from 'src/app/_services/rivers.service';
 import { RiverSectionsService } from 'src/app/_services/river-sections.service';
-import { MeasuringPointsService } from 'src/app/_services/measuring-points.service';
+import { RealMeasuresService } from 'src/app/_services/real-measures.service';
 
 @Component({
   selector: 'app-research-screen',
@@ -26,24 +26,9 @@ export class ResearchScreenComponent {
   selectRiverId: number;
   selectRiverIdSectionId: number;
 
-  h: number[];
-  x: number[][];
-  Kvgl: number[][];
-  K1l: number[][];
-  K2l: number[][];
-  x00: number[];
-  x0: number[];
-  x1: number[];
-  M: number;
-  G_l: number[];
-
   dh: number;
-  N: number;
   D: number;
   V: number;
-  k1: number;
-  k2: number;
-  k3: number;
   l: number;
 
   datasets: any[];
@@ -54,119 +39,127 @@ export class ResearchScreenComponent {
     private readonly messageService: MessageService,
     private readonly riversService: RiversService,
     private readonly riverSectionsService: RiverSectionsService,
-    private readonly measuringPointsService: MeasuringPointsService
+    private readonly realMeasuresService: RealMeasuresService
   ) {
     this.riversService.list().subscribe((rivers: River[]) => this.rivers = rivers);
     this.riverSectionsService.list().subscribe((riverSections: RiverSection[]) => {
       this.allRiverSections = riverSections;
       this.setNewRiverSections();
     });
+  }
 
-    this.measuringPointsService.list().subscribe((measuringPoints: MeasuringPoint[]) => {
-      this.allMeasuringPoints = measuringPoints;
-      this.setNewMeasuringPoints();
+  onChangeRiverSections(event: any) {
+    this.selectRiverIdSectionId = event.target.value;
+    this.riverSectionsService.getById(event.target.value).subscribe((section: RiverSection) => {
+      this.D = section.diffuse;
+      this.V = section.velosity;
     });
+    this.dh = 1;
+    this.l = 1;
 
+    this.realMeasuresService.getResults(2).subscribe((measures: any) => {
+      measures = Object.keys(measures).map(key => (measures[key]));
+      this.forecast(measures[0]);
+    });
+  }
 
-
+  forecast(arr: any[]) {
     this.datasets = [];
 
-    this.h = [];
-    this.x = [];
-    this.Kvgl = [];
-    this.K1l = [];
-    this.K2l = [];
-    this.x00 = [];
-    this.x0 = [];
-    this.x1 = [];
-    this.G_l = [];
+    const h = [];
+    const x: number[][] = [];
+    const Kvgl = [];
+    const K1l = [];
+    const K2l = [];
+    let x00 = [];
+    let x0 = [];
+    const x1 = [];
+    const G_l = [];
 
-    this.dh = 1;
-    this.N = 24;
-    this.D = 1.6;
-    this.V = 5.3;
-    this.k1 = 0.3;
-    this.l = 1;
-    this.x00 = [100, 99, 92, 85, 80, 75, 73, 67];
-    this.x0 = [99.41, 98, 90.43, 84, 78, 74.46, 72, 66.03];
-    this.M = this.x00.length;
+    x0 = arr.map((item: any) => +item.value);
+    x00 = arr.map((item: any) => +item.value + 1);
 
-    const labels = [];
+    const dh = this.dh;
+    const D = this.D;
+    const V = this.V;
+    const k1 = arr[0].substance.k1;
+    const k2 = arr[0].substance.k2;
+    const k3 = arr[0].substance.k3;
+    const l = this.l;
+    const M = x00.length;
 
-    const substanceValidValue = 5;
+    const substanceValidValue = arr[0].substance.validValue;
 
-    for (let n = 0; n <= this.N; n = n + this.dh) {
-      labels.push(n);
+    h[0] = 1;
+    x[0] = [];
+
+    for (let i = 0; i < M; i++) {
+      h[1] = Math.sqrt(dh);
+      x1[i] = x0[i] - h[1] * x00[i];
+      x[0][i] = x0[i];
     }
 
-    for (let n = 0; n <= this.N; n++) {
-      this.Kvgl.push([]);
-      this.K1l.push([]);
-      this.K2l.push([]);
-      this.x.push([]);
-    }
-
-    this.h[0] = 1;
-    for (let i = 0; i < this.M; i++) {
-      this.h[1] = Math.sqrt(this.dh);
-      this.x1[i] = this.x0[i] - this.h[1] * this.x00[i];
-      this.x[0][i] = this.x0[i];
-    }
-
-
+    x[1] = [];
+    Kvgl[1] = [];
+    K1l[1] = [];
+    K2l[1] = [];
     // Розраховується стан якості води в кожній точці в 1й момент часу
-    for (let m = 0; m < this.M; m++) {
-      if (this.l === 1) { // Якщо l=1
-        this.G_l[1] = -this.k1 / this.D;
+    for (let m = 0; m < M; m++) {
+      if (l === 1) { // Якщо l=1
+        G_l[1] = -k1 / D;
       }
-      if (this.l === 2) { // Якщо l=2
-        this.G_l[1] = -(this.k2 / this.D) * (1 - Math.exp(-this.k1 * 1));
+      if (l === 2) { // Якщо l=2
+        G_l[1] = -(k2 / D) * (1 - Math.exp(-k1 * 1));
       }
-      if (this.l === 3) { // Якщо l=3
-        this.G_l[1] = -(this.k3 / this.D) * (1 - Math.exp(-this.k2 * (1 - Math.exp(-this.k1 * 1)) * 1));
+      if (l === 3) { // Якщо l=3
+        G_l[1] = -(k3 / D) * (1 - Math.exp(-k2 * (1 - Math.exp(-k1 * 1)) * 1));
       }
-      this.h[1] = Math.sqrt(this.dh);
-      this.Kvgl[1][m] = 2 * this.h[0] + this.h[0] * (this.h[0] + this.h[1]) * this.V / this.D -
-        this.h[0] * this.h[1] * (this.h[0] + this.h[1]) * this.G_l[1];
-      this.K1l[1][m] = (2 * this.h[0] + this.h[0] * (this.h[0] + this.h[1]) * this.V / this.D + 2 * this.h[1]) / this.Kvgl[1][m];
-      this.K2l[1][m] = 2 * this.h[1] / this.Kvgl[1][m];
-      this.x[1][m] = this.K1l[1][m] * this.x[0][m] - this.K2l[1][m] * this.x1[m];
+      h[1] = Math.sqrt(dh);
+      Kvgl[1][m] = 2 * h[0] + h[0] * (h[0] + h[1]) * V / D -
+        h[0] * h[1] * (h[0] + h[1]) * G_l[1];
+      K1l[1][m] = (2 * h[0] + h[0] * (h[0] + h[1]) * V / D + 2 * h[1]) / Kvgl[1][m];
+      K2l[1][m] = 2 * h[1] / Kvgl[1][m];
+      x[1][m] = K1l[1][m] * x[0][m] - K2l[1][m] * x1[m];
     }
     // Розраховується стан якості води в кожній точці в n-й момент часу
     const arrayN: number[] = [];
-    for (let m = 0; m < this.M; m++) {
-      let n = 1;
-      while (this.x[n][m] >= substanceValidValue) {
+    for (let m = 0; m < M; m++) {
+      let n = 2;
+      while (x[n - 1][m] >= substanceValidValue) {
+        Kvgl.push([]);
+        K1l.push([]);
+        K2l.push([]);
+        x.push([]);
+        if (l === 1) { // Якщо l=1
+          G_l[n] = -k1 / D;
+        }
+        if (l === 2) { // Якщо l=2
+          G_l[n] = -(k2 / D) * (1 - Math.exp(-k1 * n));
+        }
+        if (l === 3) { // Якщо l=3
+          G_l[n] = -(k3 / D) * (1 - Math.exp(-k2 * (1 - Math.exp(-k1 * n)) * n));
+        }
+
+        h[n] = Math.sqrt(n * dh);
+        Kvgl[n][m] = 2 * h[n - 1] + h[n - 1] * (h[n - 1] + h[n]) * V / D -
+          h[n - 1] * h[n] * (h[n - 1] + h[n]) * G_l[n];
+        K1l[n][m] = (2 * h[n - 1] + h[n - 1] * (h[n - 1] + h[n]) * V / D +
+          2 * h[n]) / Kvgl[n][m];
+        K2l[n][m] = 2 * h[n] / Kvgl[n][m];
+        x[n][m] = K1l[n][m] * x[n - 1][m] - K2l[n][m] * x[n - 2][m];
         n++;
-        if (this.l === 1) { // Якщо l=1
-          this.G_l[n] = -this.k1 / this.D;
-        }
-        if (this.l === 2) { // Якщо l=2
-          this.G_l[n] = -(this.k2 / this.D) * (1 - Math.exp(-this.k1 * n));
-        }
-        if (this.l === 3) { // Якщо l=3
-          this.G_l[n] = -(this.k3 / this.D) * (1 - Math.exp(-this.k2 * (1 - Math.exp(-this.k1 * n)) * n));
-        }
-
-        this.h[n] = Math.sqrt(n * this.dh);
-        this.Kvgl[n][m] = 2 * this.h[n - 1] + this.h[n - 1] * (this.h[n - 1] + this.h[n]) * this.V / this.D -
-          this.h[n - 1] * this.h[n] * (this.h[n - 1] + this.h[n]) * this.G_l[n];
-        this.K1l[n][m] = (2 * this.h[n - 1] + this.h[n - 1] * (this.h[n - 1] + this.h[n]) * this.V / this.D +
-          2 * this.h[n]) / this.Kvgl[n][m];
-        this.K2l[n][m] = 2 * this.h[n] / this.Kvgl[n][m];
-        this.x[n][m] = this.K1l[n][m] * this.x[n - 1][m] - this.K2l[n][m] * this.x[n - 2][m];
       }
-      arrayN.push(n);
+      arrayN.push(n - 1);
     }
-    console.log(this.x);
+    console.log(x);
 
-    this.N = Math.max.apply(null, arrayN);
+    const N = Math.max.apply(null, arrayN);
     // графік
-    for (let m = 0; m < this.M; m++) {
+    for (let m = 0; m < M; m++) {
       const data = [];
-      for (let n = 0; n <= this.N; n++) {
-        if (this.x[n][m]) {
-          data.push(this.x[n][m].toFixed(2));
+      for (let n = 0; n <= N; n++) {
+        if (x[n][m]) {
+          data.push(x[n][m].toFixed(2));
         }
       }
 
@@ -177,20 +170,20 @@ export class ResearchScreenComponent {
         borderColor: '#4bc0c0'
       });
     }
+
+    const labels = [];
+    for (let n = 0; n <= N; n = n + dh) {
+      labels.push(n);
+    }
+
     this.data = {
       labels: labels,
       datasets: this.datasets
     };
   }
 
-
   forecastCleaning() {
     console.log('forecastCleaning!');
-  }
-
-  onChangeRiverSections(event: any) {
-    this.selectRiverIdSectionId = event.target.value;
-    this.setNewMeasuringPoints(this.selectRiverIdSectionId);
   }
 
   setNewRiverSections(event?: any) {
@@ -206,16 +199,9 @@ export class ResearchScreenComponent {
       .filter((riverSection: RiverSection) => riverSection.river_id == this.selectRiverId);
   }
 
-  setNewMeasuringPoints(sectionid?: number) {
-    if (!this.selectRiverIdSectionId) {
-      this.measuringPoints = this.allMeasuringPoints;
-      return;
-    }
-    const id = sectionid ? sectionid : this.selectRiverIdSectionId;
-
-    this.measuringPoints = this.allMeasuringPoints
-      // tslint:disable-next-line:triple-equals
-      .filter((measuringPoint: MeasuringPoint) => measuringPoint.river_section_id == id);
-    console.log(this.measuringPoints);
+  compareById(itemFromList: any, item: any): boolean {
+    return itemFromList && item
+      ? itemFromList.id === item.id
+      : itemFromList === item;
   }
 }

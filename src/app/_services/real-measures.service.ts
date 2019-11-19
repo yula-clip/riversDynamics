@@ -18,4 +18,8 @@ export class RealMeasuresService extends BaseCRUDService<RealMeasure> {
   public getPollutedSection(): Observable<any> {
     return this.httpClient.get<any>(`${this.generateLink()}/polluted`);
   }
+
+  public getResults(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.generateLinkWithId(id)}/results`);
+  }
 }
