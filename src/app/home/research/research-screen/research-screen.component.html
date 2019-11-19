@@ -19,18 +19,38 @@
       </div>
     </div>
     <div class="form-group row">
+      <label class="col-md-3 col-form-label text-right require">l</label>
+      <div class="col-md-3">
+        <select class="form-control" (change)="setGroupL($event)">
+          <option [value]="null">Виберіть групу</option>
+          <option [value]="1">1</option>
+          <option [value]="2">2</option>
+          <option [value]="3">3</option>
+        </select>
+      </div>
+      <label for="riverSection-name" class="col-md-3 col-form-label text-right require">Крок інтегрування</label>
+      <div class="col-md-3">
+        <select class="form-control" (change)="setStep($event)">
+          <option [value]="null">Виберіть крок</option>
+          <option [value]="1">Щогодини</option>
+          <option [value]="24">Щоденно</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
       <div class="col-md-12 text-right">
-        <button class="btn btn-primary border mr-2" type="button" (click)="forecastCleaning()">
+        <button class="btn btn-primary border mr-2" type="button" (click)="forecastCleaning()"
+          [disabled]="!selectRiverId || !selectRiverIdSectionId || !l || !dh">
           Спрогнозувати очищення
         </button>
       </div>
     </div>
   </div>
-  <div class="pl-2">
-    <p-chart type="line" [data]="data"></p-chart>
+  <div class="pl-2" *ngFor="let measure of measures">
+    <p-chart type="line" [data]="measure.data"></p-chart>
 
-    <p-table *ngIf="datasets && datasets.length" [value]="datasets" [scrollable]="true" scrollHeight="400px"
-      [style]="{width:'65vw'}">
+    <p-table *ngIf="measure.datasets && measure.datasets.length" [value]="measure.datasets" [scrollable]="true"
+      scrollHeight="400px" [style]="{width:'65vw'}">
       <ng-template pTemplate="header" let-columns>
         <tr>
           <th id="th-table">

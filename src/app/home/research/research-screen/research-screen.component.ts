@@ -15,9 +15,8 @@ import { RealMeasuresService } from 'src/app/_services/real-measures.service';
   templateUrl: './research-screen.component.html',
   providers: [MessageService]
 })
-export class ResearchScreenComponent {
-  data: any;
 
+export class ResearchScreenComponent {
   rivers: River[];
   riverSections: RiverSection[];
   measuringPoints: MeasuringPoint[];
@@ -31,7 +30,7 @@ export class ResearchScreenComponent {
   V: number;
   l: number;
 
-  datasets: any[];
+  measures: any[];
   constructor(
     private readonly location: Location,
     private readonly activatedRoute: ActivatedRoute,
@@ -48,24 +47,27 @@ export class ResearchScreenComponent {
     });
   }
 
+  setGroupL(event: any) {
+    this.l = event.target.value;
+  }
+
+  setStep(event: any) {
+    this.dh = event.target.value;
+  }
+
   onChangeRiverSections(event: any) {
     this.selectRiverIdSectionId = event.target.value;
     this.riverSectionsService.getById(event.target.value).subscribe((section: RiverSection) => {
       this.D = section.diffuse;
       this.V = section.velosity;
     });
-    this.dh = 1;
-    this.l = 1;
-
-    this.realMeasuresService.getResults(2).subscribe((measures: any) => {
-      measures = Object.keys(measures).map(key => (measures[key]));
-      this.forecast(measures[0]);
-    });
   }
 
-  forecast(arr: any[]) {
-    this.datasets = [];
-
+  forecast(arr: any[], l: number, dh: number): any {
+    let datasets: any[];
+    let data: any;
+    datasets = [];
+    data = [];
     const h = [];
     const x: number[][] = [];
     const Kvgl = [];
@@ -79,15 +81,14 @@ export class ResearchScreenComponent {
     x0 = arr.map((item: any) => +item.value);
     x00 = arr.map((item: any) => +item.value + 1);
 
-    const dh = this.dh;
     const D = this.D;
     const V = this.V;
     const k1 = arr[0].substance.k1;
     const k2 = arr[0].substance.k2;
     const k3 = arr[0].substance.k3;
-    const l = this.l;
     const M = x00.length;
-
+    l = +l;
+    dh = +dh;
     const substanceValidValue = arr[0].substance.validValue;
 
     h[0] = 1;
@@ -151,21 +152,20 @@ export class ResearchScreenComponent {
       }
       arrayN.push(n - 1);
     }
-    console.log(x);
 
     const N = Math.max.apply(null, arrayN);
     // графік
     for (let m = 0; m < M; m++) {
-      const data = [];
+      const dataItem = [];
       for (let n = 0; n <= N; n++) {
         if (x[n][m]) {
-          data.push(x[n][m].toFixed(2));
+          dataItem.push(x[n][m].toFixed(2));
         }
       }
 
-      this.datasets.push({
+      datasets.push({
         label: 'x' + m,
-        data: data,
+        data: dataItem,
         fill: true,
         borderColor: '#4bc0c0'
       });
@@ -176,14 +176,19 @@ export class ResearchScreenComponent {
       labels.push(n);
     }
 
-    this.data = {
+    data = {
       labels: labels,
-      datasets: this.datasets
+      datasets: datasets
     };
+    return { cleanTime: N, substance: arr[0].substance, x, datasets, data };
   }
 
+
   forecastCleaning() {
-    console.log('forecastCleaning!');
+    this.realMeasuresService.getResults(this.selectRiverIdSectionId).subscribe((measures: any) => {
+      measures = Object.keys(measures).map(key => (measures[key]));
+      this.measures = measures.map(measure => this.forecast(measure, this.l, this.dh));
+    });
   }
 
   setNewRiverSections(event?: any) {
