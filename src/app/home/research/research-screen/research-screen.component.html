@@ -46,6 +46,36 @@
       </div>
     </div>
   </div>
+
+  <div class="pl-2">
+    <p-table *ngIf="measures && measures.length" [value]="measures" [scrollable]="true" scrollHeight="400px"
+      [style]="{width:'65vw'}">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th id="th-table">
+            Речовина
+          </th>
+          <th id="th-table">
+            Час очищення
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-measure let-columns>
+        <tr id="tr-table">
+          <td>
+            <span class="font-weight-bold">{{measure.substance.name}}</span>
+          </td>
+          <td>
+            {{measure.cleanTime}}
+            <ng-container *ngIf="dh == 1">(год.)</ng-container>
+            <ng-container *ngIf="dh == 24">(дн.)</ng-container>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
   <div class="pl-2" *ngFor="let measure of measures">
     <p-chart type="line" [data]="measure.data"></p-chart>
 

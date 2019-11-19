@@ -172,6 +172,7 @@ export class ResearchScreenComponent {
     }
 
     const labels = [];
+    dh = 1;
     for (let n = 0; n <= N; n = n + dh) {
       labels.push(n);
     }
@@ -180,6 +181,7 @@ export class ResearchScreenComponent {
       labels: labels,
       datasets: datasets
     };
+
     return { cleanTime: N, substance: arr[0].substance, x, datasets, data };
   }
 
