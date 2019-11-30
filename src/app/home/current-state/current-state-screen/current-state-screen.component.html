@@ -23,12 +23,12 @@
         <p-gmap class="col-md-6" [options]="options" (onMapReady)="setMap($event)" [overlays]="overlays"
           [style]="{'height':'250px'}">
         </p-gmap>
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
           <label for="river-name" class="col col-form-label">Дата виміру:</label>
           <label class="col col-form-label">
             {{measures[0].date}}
           </label>
-        </div>
+        </div> -->
       </div>
 
       <p-table [value]="measures" class="mb">
@@ -42,6 +42,9 @@
             </th>
             <th id="th-table">
               Значення
+            </th>
+            <th id="th-table">
+              Дата останнього виміру в точці
             </th>
           </tr>
         </ng-template>
@@ -58,6 +61,9 @@
               <div *ngIf="isInvalidValue(measure.value, measure.substance.validValue)"><span
                   class="badge badge-danger">Допустиме значення: {{ measure.substance.validValue }}
                   {{measure.substance.unitsMeasure}}</span></div>
+            </td>
+            <td>
+              {{measure.date}}
             </td>
           </tr>
         </ng-template>

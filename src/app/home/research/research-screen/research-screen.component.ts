@@ -25,7 +25,7 @@ export class ResearchScreenComponent {
   selectRiverId: number;
   selectRiverIdSectionId: number;
 
-  dh: number;
+  dh = 1;
   D: number;
   V: number;
   l: number;
@@ -51,9 +51,9 @@ export class ResearchScreenComponent {
     this.l = event.target.value;
   }
 
-  setStep(event: any) {
-    this.dh = event.target.value;
-  }
+  // setStep(event: any) {
+  //   this.dh = event.target.value;
+  // }
 
   onChangeRiverSections(event: any) {
     this.selectRiverIdSectionId = event.target.value;
@@ -91,12 +91,11 @@ export class ResearchScreenComponent {
     dh = +dh;
     const substanceValidValue = arr[0].substance.validValue;
 
-    h[0] = 1;
     x[0] = [];
 
     for (let i = 0; i < M; i++) {
-      h[1] = Math.sqrt(dh);
-      x1[i] = x0[i] - h[1] * x00[i];
+      h[0] = 1;
+      x1[i] = x0[i] - 0 * x00[i];
       x[0][i] = x0[i];
     }
 
@@ -115,7 +114,7 @@ export class ResearchScreenComponent {
       if (l === 3) { // Якщо l=3
         G_l[1] = -(k3 / D) * (1 - Math.exp(-k2 * (1 - Math.exp(-k1 * 1)) * 1));
       }
-      h[1] = Math.sqrt(dh);
+      h[1] = Math.sqrt(1 * dh);
       Kvgl[1][m] = 2 * h[0] + h[0] * (h[0] + h[1]) * V / D -
         h[0] * h[1] * (h[0] + h[1]) * G_l[1];
       K1l[1][m] = (2 * h[0] + h[0] * (h[0] + h[1]) * V / D + 2 * h[1]) / Kvgl[1][m];
