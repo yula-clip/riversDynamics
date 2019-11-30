@@ -193,6 +193,14 @@ export class ResearchScreenComponent {
     });
   }
 
+  maxCleanTime(): string {
+    let maxTime = 0;
+    this.measures.forEach(measure => {
+      maxTime = Math.max(maxTime, measure.cleanTime);
+    });
+    return maxTime.toString();
+  }
+
   setNewRiverSections(event?: any) {
     this.selectRiverId = event ? event.target.value : null;
 

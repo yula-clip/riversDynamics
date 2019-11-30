@@ -8,25 +8,35 @@
     </button>
   </div>
 </div>
-<p-table [value]="users" [paginator]="true" [rows]="defaultPageOption" >
+<p-table [value]="users" [paginator]="true" [rows]="defaultPageOption">
   <ng-template pTemplate="header">
     <tr>
       <th id="th-table">
         Назва
+      </th>
+      <th id="th-table">
+        Електронна адреса
       </th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-user>
     <tr id="tr-table">
       <td>
+        {{user.name}}
+      </td>
+      <td>
+        {{user.email}}
+      </td>
+      <td>
         <div class="d-flex justify-content-between align-items-center">
-          <h6>{{user.name}}</h6>
+          <div>
+            <span *ngIf="user.isAdmin">Адміністратор</span>
+          </div>
           <div>
             <button class="btn btn-sm btn-outline-secondary table-btn" (click)="openEditScreen(user)">
               <fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon>
             </button>
-            <button class="btn btn-sm btn-outline-secondary table-btn"
-              (click)="showDeleteConfirmation(user, template)">
+            <button class="btn btn-sm btn-outline-secondary table-btn" (click)="showDeleteConfirmation(user, template)">
               <fa-icon [icon]="['fas', 'trash']"></fa-icon>
             </button>
           </div>

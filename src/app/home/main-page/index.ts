@@ -7,20 +7,22 @@ import { ToastModule } from 'primeng/toast';
 import { MainPageComponent } from './main-page.component';
 import { MainPageScreenComponent } from './main-page-screen/main-page-screen.component';
 import { MainPageRoutingModule } from './main-page-routing.module';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TableModule,
-        ReactiveFormsModule,
-        FontAwesomeModule,
-        FormsModule,
-        ToastModule,
-        MainPageRoutingModule
-    ],
-    declarations: [
-        MainPageComponent,
-        MainPageScreenComponent
-    ]
+  imports: [
+    CommonModule,
+    TableModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    FormsModule,
+    ToastModule,
+    MainPageRoutingModule,
+    CardModule
+  ],
+  declarations: [
+    MainPageComponent,
+    MainPageScreenComponent
+  ]
 })
 export class MainPageModule { }
