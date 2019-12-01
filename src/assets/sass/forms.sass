@@ -1,119 +1,128 @@
 @import "../../app/constants"
 
 .error-message
-    color: $error-color
+  color: $error-color
 .ui-colorpicker-preview
-    height: 2em
+  height: 2em
 .radiobutton-container
-    display: block
-    position: relative
-    padding-left: 20px
-    margin-bottom: 8px
+  display: block
+  position: relative
+  padding-left: 20px
+  margin-bottom: 8px
+  cursor: pointer
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  input
+    position: absolute
+    opacity: 0
     cursor: pointer
-    -webkit-user-select: none
-    -moz-user-select: none
-    -ms-user-select: none
-    user-select: none
-    input
-        position: absolute
-        opacity: 0
-        cursor: pointer
 .checkmark
-    position: absolute
-    top: 4px
-    left: 0
-    height: 15px
-    width: 15px
-    background-color: $input-border-color
-    border-radius: 50%
+  position: absolute
+  top: 4px
+  left: 0
+  height: 15px
+  width: 15px
+  background-color: $input-border-color
+  border-radius: 50%
 .radiobutton-container:hover input ~ .checkmark
-    background-color: $color-icons
+  background-color: $color-icons
 .radiobutton-container input:checked ~ .checkmark
-    background-color: $primary-color
+  background-color: $primary-color
 .checkmark:after
-    content: ""
-    position: absolute
-    display: none
+  content: ""
+  position: absolute
+  display: none
 .radiobutton-container input:checked ~ .checkmark:after
-    display: block
+  display: block
 .radiobutton-container .checkmark:after
-    top: 3.9px
-    left: 4.2px
-    width: 7px
-    height: 7px
-    border-radius: 50%
-    background: white
+  top: 3.9px
+  left: 4.2px
+  width: 7px
+  height: 7px
+  border-radius: 50%
+  background: white
 .container-fluid
-    .is-invalid,
-    .is-invalid.ui-inputtext:enabled:focus:not(.ui-state-error),
-    .is-invalid.ui-inputtext:enabled:hover:not(.ui-state-error)
-        padding-right: .75rem
-        border-color: $error-color
-        background-image: none
+  .is-invalid,
+  .is-invalid.ui-inputtext:enabled:focus:not(.ui-state-error),
+  .is-invalid.ui-inputtext:enabled:hover:not(.ui-state-error)
+    padding-right: .75rem
+    border-color: $error-color
+    background-image: none
     .is-invalid ~ label
-            color: $error-color
+      color: $error-color
 .form-control:focus
-    outline: none
-    box-shadow: none
-    border-color: $input-border-color
+  outline: none
+  box-shadow: none
+  border-color: $input-border-color
 .form-control.is-invalid:focus,
 .was-validated .form-control:invalid:focus
-    box-shadow: none
+  box-shadow: none
 .require:after
-    content: "*"
-    color: $error-color
-    font-size: 16px
-    padding: 2px
+  content: "*"
+  color: $error-color
+  font-size: 16px
+  padding: 2px
 .edit-page
-    max-width: 600px
-    margin-left: auto
-    margin-right: auto
+  max-width: 600px
+  margin-left: auto
+  margin-right: auto
 .checkbox-container
-    display: block
-    position: relative
-    padding-left: 35px
-    margin-bottom: 12px
+  display: block
+  position: relative
+  padding-left: 35px
+  margin-bottom: 12px
+  cursor: pointer
+  font-size: 22px
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  input
+    position: absolute
+    opacity: 0
     cursor: pointer
-    font-size: 22px
-    -webkit-user-select: none
-    -moz-user-select: none
-    -ms-user-select: none
-    user-select: none
-    input
-        position: absolute
-        opacity: 0
-        cursor: pointer
-        height: 0
-        width: 0
+    height: 0
+    width: 0
     .checkmark
-        position: absolute
-        top: 8px
-        left: 0
-        height: 20px
-        width: 20px
-        border-radius: .25rem
-        background-color: $input-border-color
+      position: absolute
+      top: 8px
+      left: 0
+      height: 20px
+      width: 20px
+      border-radius: .25rem
+      background-color: $input-border-color
     input:checked ~ .checkmark
-        background-color: $primary-color
+      background-color: $primary-color
     .checkmark:after
-        content: ""
-        position: absolute
-        display: none
+      content: ""
+      position: absolute
+      display: none
     input:checked ~ .checkmark:after
-        display: block
+      display: block
     .checkmark:after
-        left: 7px
-        top: 4px
-        width: 7px
-        height: 10px
-        border: solid white
-        border-width: 0 3px 3px 0
-        -webkit-transform: rotate(45deg)
-        -ms-transform: rotate(45deg)
-        transform: rotate(45deg)
+      left: 7px
+      top: 4px
+      width: 7px
+      height: 10px
+      border: solid white
+      border-width: 0 3px 3px 0
+      -webkit-transform: rotate(45deg)
+      -ms-transform: rotate(45deg)
+      transform: rotate(45deg)
 .checkbox-container:hover input ~ .checkmark
   background-color: $color-icons
 body
   .login-page
     .ui-inputtext
       height: 37px
+  .real-meas
+    .ui-button
+      margin-right: 15px
+      background-color: #fff
+      border-color: #ced4da
+    .ui-button:hover
+      background-color: $primary-color
+      span
+        color: #fff

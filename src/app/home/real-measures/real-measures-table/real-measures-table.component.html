@@ -1,16 +1,22 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
 <div class="py-3">
   <h5>Реальні виміри</h5>
 </div>
-<div class="row justify-content-between mb-3">
+<div class="row justify-content-between mb-3 real-meas">
   <div class="col-1">
     <button class="btn btn-sm btn-outline-secondary add-item table-btn" (click)="openCreateScreen()">
       <fa-icon [icon]="['fas', 'plus']"></fa-icon>
     </button>
   </div>
+  <p-fileUpload #fubauto mode="basic" name="kaka[]" url="http://api.diploma.com/realMeasures/import"
+    (onUpload)="onUpload($event)" [auto]="false" chooseLabel="Імпорт"></p-fileUpload>
 </div>
 <p-table [value]="realMeasures" [paginator]="true" [rows]="defaultPageOption">
   <ng-template pTemplate="header">
     <tr>
+      <th id="th-table">
+        №
+      </th>
       <th id="th-table">
         Дата
       </th>
@@ -24,6 +30,9 @@
   </ng-template>
   <ng-template pTemplate="body" let-realMeasure>
     <tr id="tr-table">
+      <td>
+        <h6>{{realMeasure.id}}</h6>
+      </td>
       <td>
         <h6>{{convertDate(realMeasure.date)}}</h6>
       </td>

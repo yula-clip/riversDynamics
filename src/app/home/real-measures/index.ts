@@ -10,6 +10,7 @@ import { RealMeasuresTableComponent } from './real-measures-table/real-measures-
 import { RealMeasuresRoutingModule } from './real-measures-routing.module';
 import { PickItemFromListModule } from '../../_components/pick-list';
 import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { CalendarModule } from 'primeng/calendar';
     ToastModule,
     RealMeasuresRoutingModule,
     PickItemFromListModule,
-    CalendarModule
+    CalendarModule,
+    FileUploadModule
   ],
   declarations: [
     RealMeasuresComponent,

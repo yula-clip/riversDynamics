@@ -7,7 +7,6 @@ import { RealMeasuresService } from '../../../_services/real-measures.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { MeasuringPoint, Substance } from '../../../_models';
 import * as moment from 'moment';
 import { AppConstants } from '../../../app-constants';
 
@@ -23,6 +22,7 @@ export class RealMeasuresTableComponent extends TableContent<RealMeasure> {
     private readonly modalService: BsModalService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
+    private messageService: MessageService
   ) {
     super(realMeasuresService, modalService, router, activatedRoute);
   }
@@ -38,5 +38,10 @@ export class RealMeasuresTableComponent extends TableContent<RealMeasure> {
 
   public convertDate(dateTime: Date): string {
     return moment(dateTime).toDate().toLocaleString(AppConstants.LOCALE, AppConstants.DATE_OPTIONS);
+  }
+
+  onUpload(event) {
+    console.log(event);
+    this.messageService.add({ severity: 'info', summary: 'Успішно імпортовано з файлу', detail: '' });
   }
 }

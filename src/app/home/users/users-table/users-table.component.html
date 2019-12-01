@@ -12,6 +12,9 @@
   <ng-template pTemplate="header">
     <tr>
       <th id="th-table">
+        №
+      </th>
+      <th id="th-table">
         Назва
       </th>
       <th id="th-table">
@@ -21,6 +24,9 @@
   </ng-template>
   <ng-template pTemplate="body" let-user>
     <tr id="tr-table">
+      <td>
+        {{user.id}}
+      </td>
       <td>
         {{user.name}}
       </td>

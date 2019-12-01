@@ -22,4 +22,8 @@ export class RealMeasuresService extends BaseCRUDService<RealMeasure> {
   public getResults(id: number): Observable<any> {
     return this.httpClient.get<any>(`${this.generateLinkWithId(id)}/results`);
   }
+
+  public importMeas(file: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.generateLink()}/import`, file);
+  }
 }

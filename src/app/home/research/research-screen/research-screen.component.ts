@@ -163,7 +163,7 @@ export class ResearchScreenComponent {
       }
 
       datasets.push({
-        label: 'x' + m,
+        label: arr[m].measuring_point.name,
         data: dataItem,
         fill: true,
         borderColor: '#4bc0c0'
