@@ -41,7 +41,7 @@ export class RealMeasuresTableComponent extends TableContent<RealMeasure> {
   }
 
   onUpload(event) {
-    console.log(event);
+    // console.log(event);
     this.messageService.add({ severity: 'info', summary: 'Успішно імпортовано з файлу', detail: '' });
   }
 }

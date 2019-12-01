@@ -1,3 +1,4 @@
+<p-toast [style]="{marginTop: '80px'}" position="top-right"></p-toast>
 <nav class="navbar fixed-top flex-nowrap p-0">
   <div class="navbar-brand text-center pl-4">
     <h6>Визначення динаміки стану річкових вод</h6>
@@ -15,6 +16,9 @@
         <ul *dropdownMenu class="dropdown-menu dropdown-menu-right p-0">
           <li>
             {{currentUserName}}
+          </li>
+          <li (click)="openModal(template)">
+            Змінити пароль
           </li>
           <li (click)="logout()">
             <a class="logout">Вийти</a>
@@ -49,3 +53,27 @@
     </div>
   </ng-template>
 </p-toast>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 id="dialog-auto-name" class="modal-title pull-left">Змінити пароль</h4>
+    <button *ngIf="error" type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div>
+    <div class="modal-body">
+      <div class="form-group row">
+        <label for="user-name" class="col-md-6 col-form-label text-right require">Введіть новий пароль</label>
+        <div class="col-md-6">
+          <input type="password" pPassword promptLabel="Введіть пароль" weakLabel="Слабкий" mediumLabel="Середній"
+            strongLabel="Сильний" [(ngModel)]="password" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn border" (click)="modalRef.hide()">Скасувати</button>
+      <button type="button" class="btn btn-primary" (click)="changePass()">Ок</button>
+    </div>
+  </div>
+</ng-template>

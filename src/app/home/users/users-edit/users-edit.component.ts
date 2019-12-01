@@ -33,10 +33,10 @@ export class UsersEditComponent extends EditContent<User> {
       name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       email: [null, [Validators.required, Validators.minLength(2), Validators.email, Validators.maxLength(32)]],
       isAdmin: [false],
+      password: [null]
     });
   }
 
   protected beforeSubmit(): void {
-    console.log(this.editForm);
-   }
+  }
 }

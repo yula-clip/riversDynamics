@@ -11,20 +11,24 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastModule } from 'primeng/components/toast/toast';
+import { PasswordModule } from 'primeng/password';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        FontAwesomeModule,
-        AccordionModule.forRoot(),
-        BsDropdownModule.forRoot(),
-        ModalModule.forRoot(),
-        ToastModule
-    ],
-    declarations: [
-        SidebarComponent,
-        HomeComponent
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    FontAwesomeModule,
+    PasswordModule,
+    AccordionModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    ToastModule,
+    FormsModule
+  ],
+  declarations: [
+    SidebarComponent,
+    HomeComponent
+  ]
 })
 export class HomeModule { }
