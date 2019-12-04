@@ -8,6 +8,7 @@ import { MeasuringPointsComponent } from './measuring-points.component';
 import { MeasuringPointsEditComponent } from './measuring-points-edit/measuring-points-edit.component';
 import { MeasuringPointsTableComponent } from './measuring-points-table/measuring-points-table.component';
 import { MeasuringPointsRoutingModule } from './measuring-points-routing.module';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { MeasuringPointsRoutingModule } from './measuring-points-routing.module'
         FontAwesomeModule,
         FormsModule,
         ToastModule,
-        MeasuringPointsRoutingModule
+        MeasuringPointsRoutingModule,
+        FileUploadModule
     ],
     declarations: [
       MeasuringPointsComponent,

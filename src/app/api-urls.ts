@@ -9,4 +9,5 @@ export class ApiUrls {
     public static readonly MEASURING_POINTS_ENDPOINT = 'measuringPoints';
     public static readonly SUBSTANCE_ENDPOINT = 'substances';
     public static readonly REAL_MEASURES_ENDPOINT = 'realMeasures';
+    public static readonly RESEARCH_ENDPOINT = 'research';
 }

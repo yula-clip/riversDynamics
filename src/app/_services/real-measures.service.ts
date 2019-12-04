@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ApiUrls } from '../api-urls';
 import { RealMeasure } from '../_models';
 import { Observable } from 'rxjs';
+import { map, repeat, retry, catchError, delay } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class RealMeasuresService extends BaseCRUDService<RealMeasure> {
@@ -16,7 +17,11 @@ export class RealMeasuresService extends BaseCRUDService<RealMeasure> {
   }
 
   public getPollutedSection(): Observable<any> {
-    return this.httpClient.get<any>(`${this.generateLink()}/polluted`);
+    return this.httpClient.get<any>(`${this.generateLink()}/polluted`)
+      .pipe(
+        delay(6000),
+        repeat()
+      );
   }
 
   public getResults(id: number): Observable<any> {

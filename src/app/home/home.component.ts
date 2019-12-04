@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AuthenticationService } from '../_services';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -8,12 +8,14 @@ import { RealMeasuresService } from '../_services/real-measures.service';
 import { RealMeasure, User } from '../_models';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { UsersService } from '../_services/users.service';
+import { ApiUrls } from '../api-urls';
+import { SharedPollutedSectionService } from '../_services/sharedPollutedSectionService';
 
 
 @Component({
   templateUrl: 'home.component.html',
   styleUrls: ['./home.component.sass'],
-  providers: [MessageService]
+  providers: [MessageService, SharedPollutedSectionService]
 })
 
 export class HomeComponent implements OnInit {
@@ -29,7 +31,8 @@ export class HomeComponent implements OnInit {
     private readonly messageService: MessageService,
     private readonly realMeasuresService: RealMeasuresService,
     private readonly modalService: BsModalService,
-    private readonly usersService: UsersService
+    private readonly usersService: UsersService,
+    private readonly sharedPollutedSection: SharedPollutedSectionService
   ) { }
 
   ngOnInit() {
@@ -42,7 +45,6 @@ export class HomeComponent implements OnInit {
   getPollutedSectionMessages() {
     this.realMeasuresService.getPollutedSection().subscribe((measures: RealMeasure[]) => {
       this.measures = measures;
-      // console.log(measures);
     });
   }
 
@@ -63,7 +65,8 @@ export class HomeComponent implements OnInit {
 
   onConfirm(riverId: number, sectionId: number) {
     this.clear();
-    console.log(riverId, sectionId);
+    this.sharedPollutedSection.setSection({ riverId, sectionId });
+    this.router.navigate([`/${ApiUrls.RESEARCH_ENDPOINT}`]);
   }
 
   clear() {

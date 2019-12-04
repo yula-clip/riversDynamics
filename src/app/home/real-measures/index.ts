@@ -8,7 +8,6 @@ import { RealMeasuresComponent } from './real-measures.component';
 import { RealMeasuresEditComponent } from './real-measures-edit/real-measures-edit.component';
 import { RealMeasuresTableComponent } from './real-measures-table/real-measures-table.component';
 import { RealMeasuresRoutingModule } from './real-measures-routing.module';
-import { PickItemFromListModule } from '../../_components/pick-list';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 
@@ -21,7 +20,6 @@ import { FileUploadModule } from 'primeng/fileupload';
     FormsModule,
     ToastModule,
     RealMeasuresRoutingModule,
-    PickItemFromListModule,
     CalendarModule,
     FileUploadModule
   ],

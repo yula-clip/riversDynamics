@@ -5,8 +5,8 @@
   </div>
   <div class="d-flex justify-content-end navbar-menu">
     <ul class="nav">
-      <li class="nav-item user-info">
-        <button type="button" id="blink" class="btn btn-danger nav-item " (click)="showConfirm()">Переглянути забруднені
+      <li class="nav-item user-info" *ngIf="measures && measures.length" >
+        <button type="button" id="blink" class="btn btn-danger nav-item" (click)="showConfirm()">Переглянути забруднені
           ділянки</button>
       </li>
       <li class="nav-item account-img mr-3" dropdown>

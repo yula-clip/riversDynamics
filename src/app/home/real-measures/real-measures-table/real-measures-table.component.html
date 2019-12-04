@@ -8,8 +8,8 @@
       <fa-icon [icon]="['fas', 'plus']"></fa-icon>
     </button>
   </div>
-  <p-fileUpload #fubauto mode="basic" name="kaka[]" url="http://api.diploma.com/realMeasures/import"
-    (onUpload)="onUpload($event)" [auto]="false" chooseLabel="Імпорт"></p-fileUpload>
+  <p-fileUpload #fubauto mode="basic" name="filemeas[]" url="http://api.diploma.com/realMeasures/import"
+    (onUpload)="onUpload($event)" (onError)="onError($event)" [auto]="true" chooseLabel="Імпорт"></p-fileUpload>
 </div>
 <p-table [value]="realMeasures" [paginator]="true" [rows]="defaultPageOption">
   <ng-template pTemplate="header">
@@ -19,6 +19,15 @@
       </th>
       <th id="th-table">
         Дата
+      </th>
+      <th id="th-table">
+        Точка
+      </th>
+      <th id="th-table">
+        Річка
+      </th>
+      <th id="th-table">
+        Ділянка річки
       </th>
       <th id="th-table">
         Речовина
@@ -35,6 +44,15 @@
       </td>
       <td>
         <h6>{{convertDate(realMeasure.date)}}</h6>
+      </td>
+      <td>
+        <h6>{{realMeasure.measuring_point.name}}</h6>
+      </td>
+      <td>
+        <h6>{{realMeasure.measuring_point.river_section.river.name}}</h6>
+      </td>
+      <td>
+        <h6>{{realMeasure.measuring_point.river_section.name}}</h6>
       </td>
       <td>
         <h6>{{realMeasure.substance.name}}</h6>

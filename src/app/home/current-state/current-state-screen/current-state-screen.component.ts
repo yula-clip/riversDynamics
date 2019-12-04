@@ -23,7 +23,7 @@ export class CurrentStateScreenComponent {
   riverSections: RiverSection[];
   allRiverSections: RiverSection[];
   selectRiverId: number;
-  selectRiverIdSectionId: number;
+  selectRiverSectionId: number;
   map: any;
   measures: RealMeasure[];
 
@@ -88,7 +88,7 @@ export class CurrentStateScreenComponent {
         lng = lng + +point.y;
         this.overlays.push(
           new google.maps.Marker({
-            position: { lat: +point.x, lng: +point.y }, title: point.name,
+            position: { lat: +point.x, lng: +point.y }, title: `${point.name}, x: ${point.x}, y: ${point.y}`,
             icon: 'http://www.google.com/mapfiles/markerA.png'
           })
         );
@@ -108,7 +108,7 @@ export class CurrentStateScreenComponent {
 
 
   onChangeRiverSections(event: any) {
-    this.selectRiverIdSectionId = event.target.value;
-    this.getMeasuresBySectionId(this.selectRiverIdSectionId);
+    this.selectRiverSectionId = event.target.value;
+    this.getMeasuresBySectionId(this.selectRiverSectionId);
   }
 }

@@ -20,6 +20,7 @@ export class MeasuringPointsTableComponent extends TableContent<MeasuringPoint> 
     private readonly modalService: BsModalService,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
+    private messageService: MessageService
   ) {
     super(riversService, modalService, router, activatedRoute);
   }
@@ -31,5 +32,15 @@ export class MeasuringPointsTableComponent extends TableContent<MeasuringPoint> 
 
   public setItems(_measuringPoints: MeasuringPoint[]) {
     this.measuringPoints = _measuringPoints;
+  }
+
+  onUpload(event) {
+    this.getItems();
+    this.messageService.add({ severity: 'success', summary: 'Успішно імпортовано з файлу', detail: '' });
+  }
+
+  onError(event) {
+    event.files = [];
+    this.messageService.add({ severity: 'error', summary: 'Під час імпорту виникла помилка. Завантажте інший файл', detail: '' });
   }
 }
