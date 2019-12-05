@@ -59,6 +59,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
       if (section) {
         this.selectRiverId = section.riverId;
         this.selectRiverSectionId = section.sectionId;
+        this.onChangeRiverSections();
       }
     });
     this.sharedPollutedSection.setSection(null);
@@ -76,7 +77,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
   //   this.dh = event.target.value;
   // }
 
-  onChangeRiverSections(event: any) {
+  onChangeRiverSections(event?: any) {
     if (event) {
       this.selectRiverSectionId = event.target.value;
     }
@@ -126,6 +127,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
     Kvgl[1] = [];
     K1l[1] = [];
     K2l[1] = [];
+
     // Розраховується стан якості води в кожній точці в 1й момент часу
     for (let m = 0; m < M; m++) {
       if (l === 1) { // Якщо l=1
@@ -144,6 +146,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
       K2l[1][m] = 2 * h[1] / Kvgl[1][m];
       x[1][m] = K1l[1][m] * x[0][m] - K2l[1][m] * x1[m];
     }
+
     // Розраховується стан якості води в кожній точці в n-й момент часу
     const arrayN: number[] = [];
     for (let m = 0; m < M; m++) {
