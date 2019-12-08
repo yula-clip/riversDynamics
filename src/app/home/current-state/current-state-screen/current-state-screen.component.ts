@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Location } from '@angular/common';
@@ -9,6 +9,7 @@ import { RiversService } from 'src/app/_services/rivers.service';
 import { RiverSectionsService } from 'src/app/_services/river-sections.service';
 import { MeasuringPoint, RealMeasure } from 'src/app/_models';
 import { RealMeasuresService } from 'src/app/_services/real-measures.service';
+import { ApiUrls } from 'src/app/api-urls';
 declare var google: any;
 
 @Component({
@@ -34,7 +35,8 @@ export class CurrentStateScreenComponent {
     private readonly messageService: MessageService,
     private readonly riversService: RiversService,
     private readonly riverSectionsService: RiverSectionsService,
-    private readonly realMeasuresService: RealMeasuresService
+    private readonly realMeasuresService: RealMeasuresService,
+    private readonly router: Router
   ) {
     this.options = {
       center: { lat: 48, lng: 24 },
@@ -106,6 +108,9 @@ export class CurrentStateScreenComponent {
     }
   }
 
+  onConfirm(riverId: number, sectionId: number) {
+    this.router.navigate([`/${ApiUrls.RESEARCH_ENDPOINT}`]);
+  }
 
   onChangeRiverSections(event: any) {
     this.selectRiverSectionId = event.target.value;

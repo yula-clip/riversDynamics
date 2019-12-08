@@ -28,7 +28,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
   selectRiverSectionId: number;
   subscribePollutedSection: Subscription;
 
-  dh = 1;
+  dh = 0.5;
   D: number;
   V: number;
   l: number;

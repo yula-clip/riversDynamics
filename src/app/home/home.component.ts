@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AuthenticationService } from '../_services';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { MessageService } from 'primeng/components/common/messageservice';
