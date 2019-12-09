@@ -28,7 +28,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
   selectRiverSectionId: number;
   subscribePollutedSection: Subscription;
 
-  dh = 0.5;
+  dh = 0.0416;
   D: number;
   V: number;
   l: number;
@@ -97,20 +97,18 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
     const Kvgl = [];
     const K1l = [];
     const K2l = [];
-    let x00 = [];
     let x0 = [];
     const x1 = [];
     const G_l = [];
 
     x0 = arr.map((item: any) => +item.value);
-    x00 = arr.map((item: any) => +item.value + 1);
 
     const D = this.D;
     const V = this.V;
     const k1 = arr[0].substance.k1;
     const k2 = arr[0].substance.k2;
     const k3 = arr[0].substance.k3;
-    const M = x00.length;
+    const M = x0.length;
     l = +l;
     dh = +dh;
     const substanceValidValue = arr[0].substance.validValue;
@@ -119,7 +117,7 @@ export class ResearchScreenComponent implements OnInit, OnDestroy {
 
     for (let i = 0; i < M; i++) {
       h[0] = 1;
-      x1[i] = x0[i] - 0 * x00[i];
+      x1[i] = x0[i] - 0 * x0[i];
       x[0][i] = x0[i];
     }
 
